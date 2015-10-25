@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<VBox prefHeight="150.0" prefWidth="340.0" spacing="5.0" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="bg.tusofia.controllers.general.ContactController">
+    <padding>
+        <Insets left="10.0" top="10.0"/>
+    </padding>
+    <HBox prefWidth="220.0">
+        <GridPane vgap="5.0">
+            <columnConstraints>
+                <ColumnConstraints minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints minWidth="10.0" prefWidth="200.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="30.0"/>
+                <RowConstraints prefHeight="30.0"/>
+            </rowConstraints>
+            <HBox.margin>
+                <Insets left="10.0" top="10.0"/>
+            </HBox.margin>
+            <Text text="Person :"/>
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1">
+                <Button fx:id="addPerson" text="Add"/>
+                <Button fx:id="modPerson" text="Modify"/>
+                <Button fx:id="delPerson" text="Delete"/>
+            </HBox>
+            <Text text="Organisation :" GridPane.rowIndex="1"/>
+            <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Button fx:id="addOrg" text="Add"/>
+                <Button fx:id="modOrg" text="Modify"/>
+                <Button fx:id="delOrg" text="Delete"/>
+            </HBox>
+        </GridPane>
+    </HBox>
+    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+        <Button onAction="#cancel" prefWidth="60.0" text="Cancel"/>
+        <Button onAction="#save" prefWidth="60.0" text="Save"/>
+    </HBox>
+</VBox>

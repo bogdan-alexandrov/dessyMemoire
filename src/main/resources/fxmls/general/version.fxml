@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<VBox prefHeight="250.0" prefWidth="380.0" spacing="5.0" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="bg.tusofia.controllers.general.VersionController">
+    <padding>
+        <Insets left="10.0" top="10.0"/>
+    </padding>
+    <HBox prefWidth="220.0">
+        <GridPane vgap="5.0">
+            <columnConstraints>
+                <ColumnConstraints prefWidth="150.0"/>
+                <ColumnConstraints prefWidth="190.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="30.0"/>
+                <RowConstraints prefHeight="30.0"/>
+                <RowConstraints prefHeight="60.0"/>
+            </rowConstraints>
+            <HBox.margin>
+                <Insets left="10.0" top="10.0"/>
+            </HBox.margin>
+            <Text text="* Version timestamp :" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                <GridPane.margin>
+                    <Insets left="-8.0"/>
+                </GridPane.margin>
+            </Text>
+            <Text text="* Version Number :" GridPane.valignment="TOP">
+                <GridPane.margin>
+                    <Insets left="-8.0"/>
+                </GridPane.margin>
+            </Text>
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1"
+                  GridPane.rowIndex="1">
+                <DatePicker fx:id="datePicker" prefWidth="120.0"/>
+                <TextField fx:id="hourField" prefWidth="40.0" promptText="hh"/>
+                <Text text=":"/>
+                <TextField fx:id="minField" prefWidth="42.0" promptText="mm"/>
+            </HBox>
+            <Text text="Modification information :" GridPane.rowIndex="2" GridPane.valignment="TOP"/>
+            <TextArea fx:id="modificationInfo" prefHeight="68.0" prefWidth="147.0" wrapText="true" GridPane.columnIndex="1"
+                      GridPane.rowIndex="2"/>
+            <TextField fx:id="versionNumber" GridPane.columnIndex="1"/>
+        </GridPane>
+    </HBox>
+    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+        <Button onAction="#cancel" prefWidth="60.0" text="Cancel"/>
+        <Button onAction="#save" prefWidth="60.0" text="Save"/>
+    </HBox>
+</VBox>

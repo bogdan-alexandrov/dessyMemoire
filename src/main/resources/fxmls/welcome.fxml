@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="bg.tusofia.controllers.WelcomeController" fx:id="container">
+    <opaqueInsets>
+        <Insets/>
+    </opaqueInsets>
+    <!--<padding>-->
+    <!--<Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>-->
+    <!--</padding>-->
+
+    <Button onAction="#newFile">
+        <tooltip>
+            <Tooltip text="New file"/>
+        </tooltip>
+        <graphic>
+            <ImageView>
+                <Image url="@../img/new_file_icon.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+
+    <Button fx:id="buttonOpen" onAction="#openFile">
+        <tooltip>
+            <Tooltip text="Open file"/>
+        </tooltip>
+        <graphic>
+            <ImageView>
+                    <Image url="@../img/open_file_icon.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+</HBox>

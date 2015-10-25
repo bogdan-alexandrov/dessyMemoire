@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<VBox prefHeight="300.0" prefWidth="450.0" spacing="5.0" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="bg.tusofia.controllers.general.ContactPersonController">
+    <padding>
+        <Insets left="15.0" right="20.0" top="10.0"/>
+    </padding>
+    <HBox prefHeight="0.0" spacing="5.0">
+        <Text text="*First Name"/>
+        <TextField fx:id="firstName"/>
+        <Text text="* Last Name :"/>
+        <TextField fx:id="lastName">
+        </TextField>
+    </HBox>
+    <HBox spacing="5.0">
+        <Text text="*Country:"/>
+        <TextField fx:id="country"/>
+        <Text text="*City :"/>
+        <TextField fx:id="city"/>
+        <Text text="*Post code :"/>
+        <TextField fx:id="postCode"/>
+    </HBox>
+    <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+        <Text text="*Address"/>
+        <TextArea fx:id="address" prefHeight="73.0" prefWidth="215.0" wrapText="true"/>
+        <VBox prefHeight="200.0" prefWidth="160.0">
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                <Text text="*Telephone :"/>
+                <TextField fx:id="phone"/>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                <Text text="Email :"/>
+                <TextField fx:id="email"/>
+            </HBox>
+        </VBox>
+    </HBox>
+    <HBox spacing="5.0">
+        <Text text="Position :"/>
+        <TextField fx:id="position"/>
+        <Text text="Fax :"/>
+        <TextField fx:id="faxPhone"/>
+        <Text text="Work hours :"/>
+        <TextField fx:id="workingHours"/>
+    </HBox>
+    <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Instructions :"/>
+        <TextArea prefHeight="70.0" prefWidth="320.0" fx:id="instructions"/>
+    </HBox>
+    <HBox alignment="CENTER" prefHeight="80.0" spacing="10.0">
+        <Button onAction="#cancel" prefWidth="60.0" text="Cancel"/>
+        <Button onAction="#save" prefWidth="60.0" text="Save"/>
+    </HBox>
+</VBox>

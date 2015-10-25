@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<VBox prefHeight="200.0" prefWidth="390.0" spacing="5.0" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="bg.tusofia.controllers.general.ChildController">
+    <padding>
+        <Insets left="15.0" top="10.0"/>
+    </padding>
+    <GridPane vgap="5.0">
+        <columnConstraints>
+            <ColumnConstraints maxWidth="80.0"/>
+            <ColumnConstraints prefWidth="275.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints prefHeight="30.0"/>
+            <RowConstraints prefHeight="100.0"/>
+        </rowConstraints>
+        <Text text="* Name :" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets left="-8.0"/>
+            </GridPane.margin>
+        </Text>
+        <TextField fx:id="name" prefHeight="25.0" prefWidth="265.0" GridPane.columnIndex="1"/>
+        <Text text="* PostProcedure :" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets left="-8.0"/>
+            </GridPane.margin>
+        </Text>
+        <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <columnConstraints>
+                <ColumnConstraints prefWidth="60.0"/>
+                <ColumnConstraints prefWidth="220.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <GridPane.margin>
+                <Insets top="20.0"/>
+            </GridPane.margin>
+            <Text text="* Name :" GridPane.valignment="TOP">
+                <GridPane.margin>
+                    <Insets left="2.0"/>
+                </GridPane.margin>
+            </Text>
+            <Text text="URI :" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                <GridPane.margin>
+                    <Insets left="10.0"/>
+                </GridPane.margin>
+            </Text>
+            <TextField fx:id="postProcedureName" GridPane.columnIndex="1" GridPane.valignment="TOP"/>
+            <TextField fx:id="postProcedureUri" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP"/>
+        </GridPane>
+    </GridPane>
+    <HBox alignment="CENTER" prefHeight="80.0" spacing="10.0">
+        <Button onAction="#cancel" prefWidth="60.0" text="Cancel"/>
+        <Button onAction="#save" prefWidth="60.0" text="Save"/>
+    </HBox>
+</VBox>

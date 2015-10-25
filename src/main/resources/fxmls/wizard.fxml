@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="bg.tusofia.controllers.WizardController">
+    <fx:define>
+        <Text fx:id="addButtonText" text="Add"/>
+    </fx:define>
+    <fx:define>
+        <Text fx:id="modifyButtonText" text="Modify"/>
+    </fx:define>
+    <fx:define>
+        <Text fx:id="deleteButtonText" text="Delete"/>
+    </fx:define>
+
+    <MenuBar prefHeight="20">
+        <Menu text="File">
+            <MenuItem text="New" onAction="#newFile"/>
+            <MenuItem text="Open..." onAction="#openFile"/>
+            <MenuItem text="Save" fx:id="meSave" onAction="#save"/>
+            <MenuItem text="Save as..." onAction="#saveAs"/>
+            <SeparatorMenuItem/>
+            <MenuItem text="Quit" onAction="#quit"/>
+        </Menu>
+    </MenuBar>
+    <Accordion minHeight="590" minWidth="810" fx:id="accordion">
+        <panes>
+            <TitledPane fx:id="generalPane" animated="true" text="General">
+                <ScrollPane>
+                    <VBox>
+                        <Label text="This element contains elements describing the general properties of the dataset as identification,">
+                            <padding>
+                                <Insets left="30.0" top="30.0"/>
+                            </padding>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="10.0"
+                               text="annotation, ownership, access rights, versioning, history and creation procedure, etc.">
+                            <padding>
+                                <Insets bottom="30.0" left="30.0"/>
+                            </padding>
+                        </Label>
+                        <GridPane hgap="5.0" vgap="5.0">
+                            <columnConstraints>
+                                <ColumnConstraints maxWidth="20.0" minWidth="20.0"/>
+                                <ColumnConstraints maxWidth="80.0" minWidth="80.0"/>
+                                <ColumnConstraints maxWidth="30.0" minWidth="30.0"/>
+                                <ColumnConstraints maxWidth="40.0" minWidth="40.0"/>
+                                <ColumnConstraints maxWidth="55.0" minWidth="55.0"/>
+                                <ColumnConstraints maxWidth="55.0" minWidth="55.0"/>
+                            </columnConstraints>
+                            <padding>
+                                <Insets left="30.0"/>
+                            </padding>
+
+                            <Label text="About :" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                            <Label text="Source :" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                            <Label text="Version :" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                            <Label text="Access rights :" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="5"/>
+                            <Label text="Contact :" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                            <Label text="SetID :" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                            <TextField GridPane.columnIndex="3" GridPane.columnSpan="3"
+                                       GridPane.rowIndex="1" fx:id="setId"/>
+                            <!--ABOUT-->
+                            <Button fx:id="buttonAddAbout"
+                                    text="${addButtonText.text}" GridPane.columnIndex="3"
+                                    GridPane.rowIndex="2" onAction="#addAbout"/>
+                            <Button fx:id="buttonModifyAbout"
+                                    text="${modifyButtonText.text}" GridPane.columnIndex="4"
+                                    GridPane.rowIndex="2" onAction="#modifyAbout"/>
+                            <Button fx:id="buttonDeleteAbout"
+                                    text="${deleteButtonText.text}" GridPane.columnIndex="5"
+                                    GridPane.rowIndex="2" onAction="#deleteAbout"/>
+
+                            <!--Source-->
+                            <Button fx:id="buttonAddSource"
+                                    text="${addButtonText.text}" GridPane.columnIndex="3"
+                                    GridPane.rowIndex="3" onAction="#addSource"/>
+                            <Button fx:id="buttonModifySource"
+                                    text="${modifyButtonText.text}" GridPane.columnIndex="4"
+                                    GridPane.rowIndex="3" onAction="#modifySource"/>
+                            <Button fx:id="buttonDeleteSource"
+                                    text="${deleteButtonText.text}" GridPane.columnIndex="5"
+                                    GridPane.rowIndex="3" onAction="#deleteSource"/>
+
+                            <!--Version-->
+                            <Button fx:id="buttonAddVersion"
+                                    text="${addButtonText.text}" GridPane.columnIndex="3"
+                                    GridPane.rowIndex="4" onAction="#addVersion"/>
+                            <Button fx:id="buttonModifyVersion"
+                                    text="${modifyButtonText.text}" GridPane.columnIndex="4"
+                                    GridPane.rowIndex="4" onAction="#modifyVersion"/>
+                            <Button fx:id="buttonDeleteVersion"
+                                    text="${deleteButtonText.text}" GridPane.columnIndex="5"
+                                    GridPane.rowIndex="4" onAction="#deleteVersion"/>
+
+                            <!--Access Rights-->
+                            <Button fx:id="buttonAddAccessRights"
+                                    text="${addButtonText.text}" GridPane.columnIndex="3"
+                                    GridPane.rowIndex="5" onAction="#addAccessRights"/>
+                            <Button fx:id="buttonModifyAccessRights"
+                                    text="${modifyButtonText.text}" GridPane.columnIndex="4"
+                                    GridPane.rowIndex="5" onAction="#modifyAccessRights"/>
+                            <Button fx:id="buttonDeleteAccessRights"
+                                    text="${deleteButtonText.text}" GridPane.columnIndex="5"
+                                    GridPane.rowIndex="5" onAction="#deleteAccessRights"/>
+
+                            <!--Contacts-->
+                            <Button fx:id="buttonAddContact"
+                                    text="${addButtonText.text}" GridPane.columnIndex="3"
+                                    GridPane.rowIndex="6" onAction="#addContact"/>
+                            <Button fx:id="buttonModifyContact"
+                                    text="${modifyButtonText.text}" GridPane.columnIndex="4"
+                                    GridPane.rowIndex="6" onAction="#modifyContact"/>
+                            <Button fx:id="buttonDeleteContact"
+                                    text="${deleteButtonText.text}" GridPane.columnIndex="5"
+                                    GridPane.rowIndex="6" onAction="#deleteContact"/>
+
+                            <Label text="*" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
+                            <Label text="*" GridPane.halignment="CENTER" GridPane.rowIndex="2"/>
+                            <Label text="*" GridPane.halignment="CENTER" GridPane.rowIndex="3"/>
+                            <Label text="*" GridPane.halignment="CENTER" GridPane.rowIndex="4"/>
+                            <Label text="*" GridPane.halignment="CENTER" GridPane.rowIndex="5"/>
+                            <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0"
+                                        minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
+                                        GridPane.columnIndex="2" GridPane.halignment="CENTER"
+                                        GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                <tooltip>
+                                    <Tooltip text="A unique name identifying the dataset"/>
+                                </tooltip>
+                                <effect>
+                                    <ImageInput>
+                                        <source>
+                                            <Image url="@../img/info_icon.png"/>
+                                        </source>
+                                    </ImageInput>
+                                </effect>
+                            </ScrollPane>
+                            <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0"
+                                        minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
+                                        GridPane.columnIndex="2" GridPane.halignment="CENTER"
+                                        GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                <tooltip>
+                                    <Tooltip
+                                            text="Description what the data is about. There is a brief annotation, domain definition and the keywords by which the dataset can be found."/>
+                                </tooltip>
+                                <effect>
+                                    <ImageInput>
+                                        <source>
+                                            <Image url="@../img/info_icon.png"/>
+                                        </source>
+                                    </ImageInput>
+                                </effect>
+                            </ScrollPane>
+                            <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0"
+                                        minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
+                                        GridPane.columnIndex="2" GridPane.halignment="CENTER"
+                                        GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                <tooltip>
+                                    <Tooltip
+                                            text="This element contains information about the data source and its history."/>
+                                </tooltip>
+                                <effect>
+                                    <ImageInput>
+                                        <source>
+                                            <Image url="@../img/info_icon.png"/>
+                                        </source>
+                                    </ImageInput>
+                                </effect>
+                            </ScrollPane>
+                            <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0"
+                                        minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
+                                        GridPane.columnIndex="2" GridPane.halignment="CENTER"
+                                        GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                <tooltip>
+                                    <Tooltip
+                                            text="This element contains elements describing the general properties of the dataset as version information."/>
+                                </tooltip>
+                                <effect>
+                                    <ImageInput>
+                                        <source>
+                                            <Image url="@../img/info_icon.png"/>
+                                        </source>
+                                    </ImageInput>
+                                </effect>
+                            </ScrollPane>
+                            <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0"
+                                        minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
+                                        GridPane.columnIndex="2" GridPane.halignment="CENTER"
+                                        GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                                <tooltip>
+                                    <Tooltip
+                                            text="This element sets the access rights for this dataset."/>
+                                </tooltip>
+                                <effect>
+                                    <ImageInput>
+                                        <source>
+                                            <Image url="@../img/info_icon.png"/>
+                                        </source>
+                                    </ImageInput>
+                                </effect>
+                            </ScrollPane>
+                            <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0"
+                                        minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
+                                        GridPane.columnIndex="2" GridPane.halignment="CENTER"
+                                        GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                                <tooltip>
+                                    <Tooltip
+                                            text="This element contains information about the contact person and the organisation responsible for this dataset."/>
+                                </tooltip>
+                                <effect>
+                                    <ImageInput>
+                                        <source>
+                                            <Image url="@../img/info_icon.png"/>
+                                        </source>
+                                    </ImageInput>
+                                </effect>
+                            </ScrollPane>
+                        </GridPane>
+                    </VBox>
+                </ScrollPane>
+            </TitledPane>
+            <TitledPane expanded="true" animated="true" text="Layout">
+                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0"/>
+                </ScrollPane>
+            </TitledPane>
+        </panes>
+    </Accordion>
+</VBox>
