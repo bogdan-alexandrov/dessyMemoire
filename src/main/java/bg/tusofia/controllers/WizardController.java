@@ -1,19 +1,22 @@
 package bg.tusofia.controllers;
 
-import bg.tusofia.models.Dataset;
-import bg.tusofia.models.General;
+import bg.tusofia.models.*;
 import bg.tusofia.tools.FileChooserHelper;
 import bg.tusofia.tools.PromBox;
 import bg.tusofia.tools.WorkingFile;
+import javafx.collections.FXCollections;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
+import java.math.BigInteger;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class WizardController extends AbstractController {
 
     public Accordion accordion;
-    public TitledPane generalPane;
     public MenuItem meSave;
 
     public TextField setId;
@@ -33,28 +36,99 @@ public class WizardController extends AbstractController {
     public Button buttonDeleteAccessRights;
     public Button buttonDeleteContact;
 
+    public TextField byteSize;
+    public TextField float32Exponent;
+    public TextField float32Mantissa;
+    public TextField float64Exponent;
+    public TextField float64Mantissa;
+    public ChoiceBox<String> codingChoiceBox;
+    public ChoiceBox<String> byteOrderChoiceBox;
+    public VBox clustersVBox;
+    public VBox typedefsBox;
+    public TitledPane generalPane;
+    public TitledPane layoutPane;
+
     private Dataset dataset;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        accordion.setExpandedPane(layoutPane);
+
+        /////////////general
         setId.textProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     dataset.getGeneral().setSetID(newValue);
                     setWorkingFileAsModified();
                 }
         );
-        accordion.setExpandedPane(generalPane);
+
+        /////////////layout
+        codingChoiceBox.setItems(FXCollections.observableArrayList(
+                        "ASCII", "Unicode", "EBCDIC", "Binary")
+        );
+        byteOrderChoiceBox.setItems(FXCollections.observableArrayList(
+                        "Bigendian", "Littlelendian")
+        );
+        byteSize.textProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    dataset.getLayout().setByteSize(BigInteger.valueOf(Integer.valueOf(newValue)));
+                    setWorkingFileAsModified();
+                }
+        );
+        float32Exponent.textProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    dataset.getLayout().setFloat32Exponent(BigInteger.valueOf(Long.valueOf(newValue)));
+                    setWorkingFileAsModified();
+                }
+        );
+        float32Mantissa.textProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    dataset.getLayout().setFloat32Mantissa(BigInteger.valueOf(Long.valueOf(newValue)));
+                    setWorkingFileAsModified();
+                }
+        );
+        float64Exponent.textProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    dataset.getLayout().setFloat64Exponent(BigInteger.valueOf(Long.valueOf(newValue)));
+                    setWorkingFileAsModified();
+                }
+        );
+        float64Mantissa.textProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    dataset.getLayout().setFloat64Mantissa(BigInteger.valueOf(Long.valueOf(newValue)));
+                    setWorkingFileAsModified();
+                }
+        );
+        codingChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+                    dataset.getLayout().setCoding(codingChoiceBox.getItems().get(newValue.intValue()));
+                    setWorkingFileAsModified();
+                }
+        );
+        byteOrderChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+                    dataset.getLayout().setByteOrder(byteOrderChoiceBox.getItems().get(newValue.intValue()));
+                    setWorkingFileAsModified();
+                }
+        );
+
+        clustersVBox.setSpacing(5);
+        typedefsBox.setSpacing(5);
     }
 
     @Override
     public void initialize() {
+        boolean fileState = WorkingFile.getInstance().isChanged();
+
         dataset = WorkingFile.getInstance().getDataset();
         this.setData(dataset);
 
         if (dataset.getGeneral() == null) {
             dataset.setGeneral(new General());
         }
+        if (dataset.getLayout() == null) {
+            dataset.setLayout(new Layout());
+        }
 
+        //GENERAL STARTs here
         General general = dataset.getGeneral();
 
         if (general.getSetID() != null) {
@@ -107,19 +181,103 @@ public class WizardController extends AbstractController {
             buttonModifyContact.setDisable(false);
             buttonDeleteContact.setDisable(false);
         }
+        //GENERAL ENDs here
 
+        //LAYOUT STARTs here
+        Layout layout = dataset.getLayout();
+        if (layout.getByteSize() != null) {
+            byteSize.setText(layout.getByteSize().toString());
+        } else {
+            setId.setText("");
+        }
+        if (layout.getFloat32Exponent() != null) {
+            float32Exponent.setText(layout.getFloat32Exponent().toString());
+        } else {
+            setId.setText("");
+        }
+        if (layout.getFloat64Exponent() != null) {
+            float64Exponent.setText(layout.getFloat64Exponent().toString());
+        } else {
+            setId.setText("");
+        }
+        if (layout.getFloat32Mantissa() != null) {
+            float32Mantissa.setText(layout.getFloat32Mantissa().toString());
+        } else {
+            setId.setText("");
+        }
+        if (layout.getFloat64Mantissa() != null) {
+            float64Mantissa.setText(layout.getFloat64Mantissa().toString());
+        } else {
+            setId.setText("");
+        }
+
+        if (layout.getCoding() != null) {
+            codingChoiceBox.setValue(layout.getCoding());
+        } else {
+            codingChoiceBox.setValue("ASCII");
+        }
+        if (layout.getByteOrder() != null) {
+            byteOrderChoiceBox.setValue(layout.getByteOrder());
+        } else {
+            byteOrderChoiceBox.setValue("Bigendian");
+        }
+
+        clustersVBox.getChildren().clear();
+        for (int i = 0; i < layout.getCluster().size(); i++) {
+            Cluster cluster = layout.getCluster().get(i);
+            HBox hbox = new HBox();
+            hbox.setSpacing(10);
+
+            Label label = new Label("Name: " + cluster.getName());
+            label.setPrefWidth(200);
+            label.setMaxWidth(200);
+            Button buttonEdit = new Button("Edit");
+            buttonEdit.setId("cluster-edit-" + i);
+            Button buttonDelete = new Button("Delete");
+            String id = "cluster-delete-" + i;
+            buttonDelete.setId(id);
+            buttonDelete.setOnAction(event -> deleteListEntity(id));
+
+            hbox.getChildren().addAll(label, buttonEdit, buttonDelete);
+            clustersVBox.getChildren().add(hbox);
+        }
+
+        typedefsBox.getChildren().clear();
+        for (int i = 0; i < layout.getTypedef().size(); i++) {
+            Typedef typedef = layout.getTypedef().get(i);
+            HBox hbox = new HBox();
+            hbox.setSpacing(10);
+
+            Label label = new Label("Name: " + typedef.getTypename());
+            label.setPrefWidth(200);
+            label.setMaxWidth(200);
+            Button buttonEdit = new Button("Edit");
+            buttonEdit.setId("typedef-edit-" + i);
+            Button buttonDelete = new Button("Delete");
+            buttonDelete.setId("typedef-delete-" + i);
+            String id = "cluster-delete-" + i;
+
+            buttonDelete.setId(id);
+            buttonDelete.setOnAction(event -> deleteListEntity(id));
+
+            hbox.getChildren().addAll(label, buttonEdit, buttonDelete);
+            typedefsBox.getChildren().add(hbox);
+        }
+        //LAYOUT ENDs here
 
         ///////////---Menu Items---///////////
-        meSave.setDisable(!WorkingFile.getInstance().isChanged());
+        meSave.setDisable(!fileState);
 
         ///////////---Window---///////////
         getStage().setOnCloseRequest(event -> {
             event.consume();
             quit();
         });
+
+        WorkingFile.getInstance().setChanged(fileState);
     }
 
-
+    //MENU STARTs here
     public void newFile() {
         PromBox.BoxAnswer answer;
         if (WorkingFile.getInstance().isChanged()) {
@@ -215,6 +373,7 @@ public class WizardController extends AbstractController {
             }
         }
     }
+    //MENU ENDs HERE
 
     private boolean isSuccessfullySaved() {
         return !WorkingFile.getInstance().isChanged();
@@ -238,7 +397,7 @@ public class WizardController extends AbstractController {
         return null;
     }
 
-    ////------------Buttons BEGINS------------////
+    ////------------Buttons BEGIN------------////
     public void addAbout() {
         System.out.println("Adding About");
         aboutButtons("Add About", new General.About());
@@ -342,5 +501,19 @@ public class WizardController extends AbstractController {
 
     public void contactButtons(String stageName, General.Contact data) {
         addModifyCommonButtons(stageName, data, "/fxmls/general/contact.fxml");
+    }
+
+    public void deleteListEntity(String buttonId) {
+        List dataset = null;
+        if (buttonId.startsWith("cluster-")) {
+            dataset = this.dataset.getLayout().getCluster();
+        } else if (buttonId.startsWith("typedef-")) {
+            dataset = this.dataset.getLayout().getTypedef();
+        }
+        if (dataset != null) {
+            int index = Integer.valueOf((String) buttonId.subSequence(buttonId.lastIndexOf('-') + 1, (buttonId.length())));
+            dataset.remove(index);
+            initialize();
+        }
     }
 }

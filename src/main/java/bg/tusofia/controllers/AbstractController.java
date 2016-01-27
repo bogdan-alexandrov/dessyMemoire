@@ -118,10 +118,6 @@ public abstract class AbstractController implements Initializable {
         workingFile.setChanged(Boolean.TRUE);
     }
 
-//    protected ObservableList getInitialTableData(List list) {
-//        return FXCollections.observableList(list);
-//    }
-
     protected void deleteTableRow(TableView<?> table) {
         ObservableList<?> selectedItem, tableItems;
         tableItems = table.getItems();
