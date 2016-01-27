@@ -49,6 +49,7 @@ public class WizardController extends AbstractController {
     public TitledPane layoutPane;
 
     private Dataset dataset;
+    private Cluster clusterToBeModified;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -231,16 +232,23 @@ public class WizardController extends AbstractController {
             Label label = new Label("Name: " + cluster.getName());
             label.setPrefWidth(200);
             label.setMaxWidth(200);
+
             Button buttonEdit = new Button("Edit");
-            buttonEdit.setId("cluster-edit-" + i);
+            String idEditB = "cluster-edit-" + i;
+            buttonEdit.setId(idEditB);
+            buttonEdit.setOnAction(event -> modifyCluster(idEditB));
+
             Button buttonDelete = new Button("Delete");
-            String id = "cluster-delete-" + i;
-            buttonDelete.setId(id);
-            buttonDelete.setOnAction(event -> deleteListEntity(id));
+            String idDelB = "cluster-delete-" + i;
+            buttonDelete.setId(idDelB);
+            buttonDelete.setOnAction(event -> deleteListEntity(idDelB));
 
             hbox.getChildren().addAll(label, buttonEdit, buttonDelete);
             clustersVBox.getChildren().add(hbox);
         }
+        Button addClusterB = new Button("Add");
+        addClusterB.setOnAction(event -> addCluster());
+        clustersVBox.getChildren().add(addClusterB);
 
         typedefsBox.getChildren().clear();
         for (int i = 0; i < layout.getTypedef().size(); i++) {
@@ -251,18 +259,22 @@ public class WizardController extends AbstractController {
             Label label = new Label("Name: " + typedef.getTypename());
             label.setPrefWidth(200);
             label.setMaxWidth(200);
-            Button buttonEdit = new Button("Edit");
-            buttonEdit.setId("typedef-edit-" + i);
-            Button buttonDelete = new Button("Delete");
-            buttonDelete.setId("typedef-delete-" + i);
-            String id = "cluster-delete-" + i;
 
+            Button buttonEdit = new Button("Edit");
+            String idEditB = "typedef-edit-" + i;
+            buttonEdit.setId(idEditB);
+            /// TODO buttonEdit.setOnAction(event -> modifyTypedef(idEditB));
+
+            Button buttonDelete = new Button("Delete");
+            String id = "typedef-delete-" + i;
             buttonDelete.setId(id);
             buttonDelete.setOnAction(event -> deleteListEntity(id));
 
             hbox.getChildren().addAll(label, buttonEdit, buttonDelete);
             typedefsBox.getChildren().add(hbox);
         }
+        //TODO Add Button
+
         //LAYOUT ENDs here
 
         ///////////---Menu Items---///////////
@@ -503,6 +515,24 @@ public class WizardController extends AbstractController {
         addModifyCommonButtons(stageName, data, "/fxmls/general/contact.fxml");
     }
 
+    public void addCluster() {
+        System.out.println("Adding Cluster");
+        clusterButtons("Add Cluster", new Cluster());
+    }
+
+    public void modifyCluster(String buttonId) {
+        System.out.println("Modifying Cluster");
+
+        int index = Integer.valueOf((String) buttonId.subSequence(buttonId.lastIndexOf('-') + 1, (buttonId.length())));
+        setClusterToBeModified(dataset.getLayout().getCluster().get(index));
+
+        clusterButtons("Edit Cluster", getClusterToBeModified());
+    }
+
+    public void clusterButtons(String stageName, Cluster data) {
+        addModifyCommonButtons(stageName, data, "/fxmls/layout/cluster.fxml");
+    }
+
     public void deleteListEntity(String buttonId) {
         List dataset = null;
         if (buttonId.startsWith("cluster-")) {
@@ -515,5 +545,13 @@ public class WizardController extends AbstractController {
             dataset.remove(index);
             initialize();
         }
+    }
+
+    public Cluster getClusterToBeModified() {
+        return clusterToBeModified;
+    }
+
+    public void setClusterToBeModified(Cluster clusterToBeModified) {
+        this.clusterToBeModified = clusterToBeModified;
     }
 }

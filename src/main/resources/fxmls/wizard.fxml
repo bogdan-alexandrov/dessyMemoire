@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -381,24 +380,8 @@
                                     </ImageInput>
                                 </effect>
                             </ScrollPane>
-                            <columnConstraints>
-                                <ColumnConstraints/>
-                                <ColumnConstraints/>
-                                <ColumnConstraints/>
-                                <ColumnConstraints/>
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints/>
-                                <RowConstraints/>
-                                <RowConstraints/>
-                                <RowConstraints/>
-                                <RowConstraints/>
-                                <RowConstraints/>
-                                <RowConstraints/>
-                                <RowConstraints/>
-                            </rowConstraints>
                         </GridPane>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Clusters :">
+                        <Text text="Clusters :">
                             <VBox.margin>
                                 <Insets left="30.0" top="30.0"/>
                             </VBox.margin>
@@ -408,7 +391,7 @@
                                 <Insets left="40.0" top="10.0"/>
                             </VBox.margin>
                         </VBox>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Typedefs :">
+                        <Text text="Typedefs :">
                             <VBox.margin>
                                 <Insets left="30.0" top="10.0"/>
                             </VBox.margin>
@@ -419,13 +402,6 @@
                             </VBox.margin>
                         </VBox>
                     </VBox>
-                    <contextMenu>
-                        <ContextMenu>
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="Unspecified Action"/>
-                            </items>
-                        </ContextMenu>
-                    </contextMenu>
                 </ScrollPane>
             </TitledPane>
         </panes>
