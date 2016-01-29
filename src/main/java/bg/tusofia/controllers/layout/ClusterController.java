@@ -4,6 +4,7 @@ import bg.tusofia.controllers.AbstractController;
 import bg.tusofia.controllers.WizardController;
 import bg.tusofia.models.Cluster;
 import bg.tusofia.models.Dataset;
+import bg.tusofia.models.Structure;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -69,6 +70,27 @@ public class ClusterController extends AbstractController {
             addStructure.setVisible(true);
             structurePreviewHBox.setVisible(false);
         }
+    }
 
+    public void addStructure() {
+        System.out.println("Adding Structure");
+        structureButtons("Add Structure", new Structure());
+    }
+
+    public void editStructure() {
+        System.out.println("Editing Structure");
+        Cluster data = (Cluster) getData();
+        structureButtons("Edit Structure", data.getStructure());
+    }
+
+    public void structureButtons(String stageName, Structure data) {
+        addModifyCommonButtons(stageName, data, "/fxmls/layout/structure.fxml");
+    }
+
+    public void deleteStructure() {
+        System.out.println("Deleting Structure");
+        setWorkingFileAsModified();
+        ((Cluster) getData()).setStructure(null);
+        initialize();
     }
 }

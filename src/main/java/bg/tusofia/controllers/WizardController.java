@@ -263,7 +263,7 @@ public class WizardController extends AbstractController {
             Button buttonEdit = new Button("Edit");
             String idEditB = "typedef-edit-" + i;
             buttonEdit.setId(idEditB);
-            /// TODO buttonEdit.setOnAction(event -> modifyTypedef(idEditB));
+            // TODO 2 buttonEdit.setOnAction(event -> modifyTypedef(idEditB));
 
             Button buttonDelete = new Button("Delete");
             String id = "typedef-delete-" + i;
@@ -273,7 +273,8 @@ public class WizardController extends AbstractController {
             hbox.getChildren().addAll(label, buttonEdit, buttonDelete);
             typedefsBox.getChildren().add(hbox);
         }
-        //TODO Add Button
+
+        //TODO 1 typedef Button
 
         //LAYOUT ENDs here
 
@@ -404,7 +405,7 @@ public class WizardController extends AbstractController {
 
     @Override
     protected String errorMessage() {
-        //TODO validation
+        //TODO errors
 
         return null;
     }

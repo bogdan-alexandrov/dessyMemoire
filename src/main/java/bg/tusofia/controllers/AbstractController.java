@@ -25,7 +25,9 @@ public abstract class AbstractController implements Initializable {
     public enum AdditionalInfoTypes {
         OWNERSHIP,
         DISTRIBUTION_RIGHTS,
-        READ_RIGHTS
+        READ_RIGHTS,
+        LITERAL,
+        RAGEXP
     }
 
     private AbstractController mainController;
