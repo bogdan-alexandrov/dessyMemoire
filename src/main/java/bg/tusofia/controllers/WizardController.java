@@ -274,7 +274,9 @@ public class WizardController extends AbstractController {
             typedefsBox.getChildren().add(hbox);
         }
 
-        //TODO 1 typedef Button
+        Button addTypedefB = new Button("Add");
+        addTypedefB.setOnAction(event -> addTypedef());
+        typedefsBox.getChildren().add(addTypedefB);
 
         //LAYOUT ENDs here
 
@@ -532,6 +534,10 @@ public class WizardController extends AbstractController {
 
     public void clusterButtons(String stageName, Cluster data) {
         addModifyCommonButtons(stageName, data, "/fxmls/layout/cluster.fxml");
+    }
+
+    private void addTypedef() {
+        //TODO add typedef
     }
 
     public void deleteListEntity(String buttonId) {

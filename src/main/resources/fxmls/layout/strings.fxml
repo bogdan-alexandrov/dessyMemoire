@@ -29,8 +29,8 @@
         <Text text="*"/>
         <Text text="Type :" GridPane.columnIndex="1"/>
         <ChoiceBox fx:id="dropdown" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT"/>
-        <TextField fx:id="value" alignment="CENTER_RIGHT" maxWidth="200.0" GridPane.columnIndex="1"
-                   GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1"/>
+        <TextField fx:id="value" maxWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2"
+                   GridPane.halignment="RIGHT" GridPane.rowIndex="1"/>
     </GridPane>
     <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
         <Button alignment="CENTER" onAction="#cancel" prefWidth="60.0" text="Cancel"/>

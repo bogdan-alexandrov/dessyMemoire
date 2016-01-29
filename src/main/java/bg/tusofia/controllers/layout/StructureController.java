@@ -1,6 +1,7 @@
 package bg.tusofia.controllers.layout;
 
 import bg.tusofia.controllers.AbstractController;
+import bg.tusofia.models.Item;
 import bg.tusofia.models.Structure;
 import bg.tusofia.tools.CommonTools;
 import javafx.scene.control.Button;
@@ -113,15 +114,24 @@ public class StructureController extends AbstractController {
     }
 
     public void addItem() {
-        //todo... 1 add Item
+        itemButtons("Add Item", new Item());
     }
 
     private void editItem() {
-        //todo... 2 edit Item
+        Structure data = (Structure) getData();
+        if (data.getItem() != null && !data.getItem().isEmpty()) {
+            itemButtons("Add Item", data.getItem().get(0));
+        }
     }
 
     private void deleteItem() {
-        //todo... 3 delete Item
+        System.out.println("Deleting item");
+        setWorkingFileAsModified();
+        ((Structure) getData()).getItem().clear();
+        initialize();
     }
 
+    public void itemButtons(String stageName, Item data) {
+        addModifyCommonButtons(stageName, data, "/fxmls/layout/item.fxml");
+    }
 }
