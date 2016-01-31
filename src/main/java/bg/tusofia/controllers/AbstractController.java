@@ -27,7 +27,8 @@ public abstract class AbstractController implements Initializable {
         DISTRIBUTION_RIGHTS,
         READ_RIGHTS,
         LITERAL,
-        RAGEXP
+        REGEXP,
+        END
     }
 
     private AbstractController mainController;

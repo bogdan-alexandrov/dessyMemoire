@@ -57,11 +57,11 @@
                     <Insets left="10.0"/>
                 </HBox.margin>
             </Text>
-            <Button fx:id="edit" mnemonicParsing="false" text="Edit"/>
-            <Button fx:id="delete" mnemonicParsing="false" text="Delete"/>
+            <Button fx:id="edit" onAction="#editEnd" text="Edit"/>
+            <Button fx:id="delete" onAction="#delete" text="Delete"/>
         </HBox>
         <Button fx:id="add" maxWidth="50.0" text="Add" GridPane.columnIndex="1" GridPane.columnSpan="2"
-                GridPane.rowIndex="6">
+                GridPane.rowIndex="6" onAction="#addEnd">
             <GridPane.margin>
                 <Insets left="10.0"/>
             </GridPane.margin>

@@ -53,6 +53,7 @@ public class WizardController extends AbstractController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //TODO changeit to general
         accordion.setExpandedPane(layoutPane);
 
         /////////////general

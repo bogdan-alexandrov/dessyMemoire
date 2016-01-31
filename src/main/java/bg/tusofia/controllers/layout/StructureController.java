@@ -36,8 +36,8 @@ public class StructureController extends AbstractController {
                 deleteButton.setOnAction(event -> deleteLiteral());
             }
             if (data.getRegexp() != null) {
-                preview.setText("[Ragexp] " + CommonTools.abbreviate(data.getRegexp(), 8));
-                editButton.setOnAction(event -> editRagexp());
+                preview.setText("[Regexp] " + CommonTools.abbreviate(data.getRegexp(), 8));
+                editButton.setOnAction(event -> editRegexp());
                 deleteButton.setOnAction(event -> deleteRagexp());
             }
             if (data.getItem() != null && !data.getItem().isEmpty()) {
@@ -78,9 +78,9 @@ public class StructureController extends AbstractController {
         structureButtons("Add Literal", "", AdditionalInfoTypes.LITERAL);
     }
 
-    public void addRagexp() {
-        System.out.println("Adding ragexp");
-        structureButtons("Add Ragexp", "", AdditionalInfoTypes.RAGEXP);
+    public void addRegexp() {
+        System.out.println("Adding regexp");
+        structureButtons("Add Regexp", "", AdditionalInfoTypes.REGEXP);
     }
 
     public void editLiteral() {
@@ -89,10 +89,10 @@ public class StructureController extends AbstractController {
         structureButtons("Add Literal", data.getLiteral().get(0), AdditionalInfoTypes.LITERAL);
     }
 
-    public void editRagexp() {
-        System.out.println("Editing ragexp");
+    public void editRegexp() {
+        System.out.println("Editing regexp");
         Structure data = (Structure) getData();
-        structureButtons("Edit Ragexp", data.getRegexp(), AdditionalInfoTypes.RAGEXP);
+        structureButtons("Edit Regexp", data.getRegexp(), AdditionalInfoTypes.REGEXP);
     }
 
     private void deleteLiteral() {
