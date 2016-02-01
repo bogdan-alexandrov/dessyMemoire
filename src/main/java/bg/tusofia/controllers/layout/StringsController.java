@@ -4,6 +4,7 @@ import bg.tusofia.controllers.AbstractController;
 import bg.tusofia.models.SeparatorType;
 import bg.tusofia.models.SimpleItem;
 import bg.tusofia.models.Structure;
+import bg.tusofia.models.Typedef;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -69,6 +70,8 @@ public class StringsController extends AbstractController {
                     break;
             }
             ((SimpleItem) controller.getData()).setEnd(separatorType);
+        }  else if (controller instanceof TypedefController){
+            ((Typedef) controller.getData()).setLiteral(value.getText());
         }
 
         controller.initialize();

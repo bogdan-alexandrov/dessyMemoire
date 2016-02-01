@@ -97,7 +97,7 @@ public class Structure implements java.io.Serializable {
             res = "Literal : ";
             res += getPreviewDescription(getLiteral().get(0), previewChars);
         } else if (getRegexp() != null) {
-            res = "Ragexp : ";
+            res = "Regexp : ";
             res += getPreviewDescription(getRegexp(), previewChars);
         } else {
             res = "Empty";
