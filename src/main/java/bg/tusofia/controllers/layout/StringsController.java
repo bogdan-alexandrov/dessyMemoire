@@ -33,6 +33,8 @@ public class StringsController extends AbstractController {
                 value.setText(data);
                 break;
             case END:
+                dropdown.setValue("Literal");
+
                 if (((SimpleItem) getData()).getEnd().getRegexp() != null &&
                         !((SimpleItem) getData()).getEnd().getRegexp().isEmpty()) {
                     dropdown.setValue("Regexp");
