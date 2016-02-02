@@ -15,9 +15,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p/>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p/>
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -44,19 +44,17 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "id",
-    "simpleItem",
-    "array",
-    "structure",
-    "itemChild"
+        "id",
+        "simpleItem",
+        "array",
+        "structure",
+        "itemChild"
 })
 @XmlRootElement(name = "item")
-public class Item implements java.io.Serializable, Cloneable{
+public class Item implements java.io.Serializable, Cloneable {
 
     @XmlElement(name = "ID")
     protected ID id;
@@ -71,38 +69,34 @@ public class Item implements java.io.Serializable, Cloneable{
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String type;
 
-    public Item(){
-    
+    public Item() {
+
     }
-    public Object clone()
-    {
-        try
-    {
+
+    public Object clone() {
+        try {
             return super.clone();
-        }
-    catch( CloneNotSupportedException e )
-    {
+        } catch (CloneNotSupportedException e) {
             return null;
         }
-    } 
+    }
+
     public Item(Item another) {
-        this.id = another.id;  
-        this.simpleItem = another.simpleItem;  
-        this.array = another.array;  
-        this.itemChild = another.itemChild;  
-        this.structure = another.structure;  
-        this.name = another.name;  
-        this.type = another.type;  
-      }
-    
+        this.id = another.id;
+        this.simpleItem = another.simpleItem;
+        this.array = another.array;
+        this.itemChild = another.itemChild;
+        this.structure = another.structure;
+        this.name = another.name;
+        this.type = another.type;
+    }
+
 
     /**
      * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ID }
-     *     
+     *
+     * @return possible object is
+     * {@link ID }
      */
     public ID getID() {
         return id;
@@ -110,11 +104,9 @@ public class Item implements java.io.Serializable, Cloneable{
 
     /**
      * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ID }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ID }
      */
     public void setID(ID value) {
         this.id = value;
@@ -122,11 +114,9 @@ public class Item implements java.io.Serializable, Cloneable{
 
     /**
      * Gets the value of the simpleItem property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SimpleItem }
-     *     
+     *
+     * @return possible object is
+     * {@link SimpleItem }
      */
     public SimpleItem getSimpleItem() {
         return simpleItem;
@@ -134,28 +124,26 @@ public class Item implements java.io.Serializable, Cloneable{
 
     /**
      * Sets the value of the simpleItem property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SimpleItem }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link SimpleItem }
      */
-    public void  setSimpleItem(SimpleItem value) {
+    public void setSimpleItem(SimpleItem value) {
         this.simpleItem = value;
     }
+
     public List<Item> getItemChild() {
         if (itemChild == null) {
-        	itemChild = new ArrayList<Item>();
+            itemChild = new ArrayList<Item>();
         }
         return this.itemChild;
     }
+
     /**
      * Gets the value of the array property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Array }
-     *     
+     *
+     * @return possible object is
+     * {@link Array }
      */
     public Array getArray() {
         return array;
@@ -163,11 +151,9 @@ public class Item implements java.io.Serializable, Cloneable{
 
     /**
      * Sets the value of the array property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Array }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Array }
      */
     public void setArray(Array value) {
         this.array = value;
@@ -175,11 +161,9 @@ public class Item implements java.io.Serializable, Cloneable{
 
     /**
      * Gets the value of the structure property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Structure }
-     *     
+     *
+     * @return possible object is
+     * {@link Structure }
      */
     public Structure getStructure() {
         return structure;
@@ -187,11 +171,9 @@ public class Item implements java.io.Serializable, Cloneable{
 
     /**
      * Sets the value of the structure property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Structure }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Structure }
      */
     public void setStructure(Structure value) {
         this.structure = value;
@@ -199,11 +181,9 @@ public class Item implements java.io.Serializable, Cloneable{
 
     /**
      * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getName() {
         return name;
@@ -211,11 +191,9 @@ public class Item implements java.io.Serializable, Cloneable{
 
     /**
      * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setName(String value) {
         this.name = value;
@@ -223,11 +201,9 @@ public class Item implements java.io.Serializable, Cloneable{
 
     /**
      * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getType() {
         if (type == null) {
@@ -239,14 +215,25 @@ public class Item implements java.io.Serializable, Cloneable{
 
     /**
      * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setType(String value) {
         this.type = value;
+    }
+
+    public String preview() {
+        if (getStructure() != null) {
+            return "Contains : structure";
+        }
+        if (getArray() != null) {
+            return "Contains : array";
+        }
+        if (getSimpleItem() != null) {
+            return "Contains : simple item";
+        }
+        return "No Type";
     }
 
 }

@@ -53,7 +53,7 @@ public class WizardController extends AbstractController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //TODO changeit to general
+        //TODO change it to general
         accordion.setExpandedPane(layoutPane);
 
         /////////////general
@@ -538,7 +538,12 @@ public class WizardController extends AbstractController {
     }
 
     private void addTypedef() {
-        //TODO add typedef
+        System.out.println("Adding Typedef");
+        typedefButtons("Add Typedef", new Typedef());
+    }
+
+    private void typedefButtons(String stageName, Typedef typedef) {
+        addModifyCommonButtons(stageName, typedef, "/fxmls/layout/typedef.fxml");
     }
 
     public void deleteListEntity(String buttonId) {

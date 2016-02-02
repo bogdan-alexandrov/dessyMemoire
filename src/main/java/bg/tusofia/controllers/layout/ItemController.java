@@ -1,6 +1,7 @@
 package bg.tusofia.controllers.layout;
 
 import bg.tusofia.controllers.AbstractController;
+import bg.tusofia.models.Array;
 import bg.tusofia.models.Item;
 import bg.tusofia.models.SimpleItem;
 import bg.tusofia.models.Structure;
@@ -57,43 +58,6 @@ public class ItemController extends AbstractController {
         }
     }
 
-    private void editStructure() {
-        System.out.println("Editing Structure");
-        Item data = (Item) getData();
-        structureButtons("Edit Structure", data.getStructure());
-    }
-
-    private void deleteStructure() {
-        System.out.println("Deleting structure");
-        setWorkingFileAsModified();
-        ((Item) getData()).setStructure(null);
-        initialize();
-    }
-
-    private void editArray() {
-        //todo edit array
-    }
-
-    private void deleteArray() {
-        System.out.println("Deleting array");
-        setWorkingFileAsModified();
-        ((Item) getData()).setArray(null);
-        initialize();
-    }
-
-    private void editSimpleItem() {
-        System.out.println("Editing Simple Item");
-        Item data = (Item) getData();
-        simpleItemButtons("Edit Simple Item", data.getSimpleItem());
-    }
-
-    private void deleteSimpleItem() {
-        System.out.println("Deleting simple item");
-        setWorkingFileAsModified();
-        ((Item) getData()).setSimpleItem(null);
-        initialize();
-    }
-
     @Override
     public void updateParent() {
         //TODO 4 update parent
@@ -114,9 +78,8 @@ public class ItemController extends AbstractController {
         return "SimpleItem/Array/Structure is obligatory field";
     }
 
-    public void simpleItem() {
-        System.out.println("Adding Simple Item");
-        simpleItemButtons("Add Simple Item", new SimpleItem());
+    public void structureButtons(String stageName, Structure data) {
+        addModifyCommonButtons(stageName, data, "/fxmls/layout/structure.fxml");
     }
 
     public void structure() {
@@ -124,15 +87,60 @@ public class ItemController extends AbstractController {
         structureButtons("Add Structure", new Structure());
     }
 
+    private void editStructure() {
+        System.out.println("Editing Structure");
+        Item data = (Item) getData();
+        structureButtons("Edit Structure", data.getStructure());
+    }
+
+    private void deleteStructure() {
+        System.out.println("Deleting structure");
+        setWorkingFileAsModified();
+        ((Item) getData()).setStructure(null);
+        initialize();
+    }
+
+    private void arrayButtons(String stageName, Array array) {
+        addModifyCommonButtons(stageName, array, "/fxmls/layout/array.fxml");
+    }
+
     public void array() {
-        //todo array
+        System.out.println("Adding Array");
+        arrayButtons("Add array", new Array());
+    }
+
+    private void editArray() {
+        System.out.println("Editing Array");
+        Item data = (Item) getData();
+        arrayButtons("Edit array", data.getArray());
+    }
+
+    private void deleteArray() {
+        System.out.println("Deleting array");
+        setWorkingFileAsModified();
+        ((Item) getData()).setArray(null);
+        initialize();
     }
 
     public void simpleItemButtons(String stageName, SimpleItem data) {
         addModifyCommonButtons(stageName, data, "/fxmls/layout/simpleItem.fxml");
     }
 
-    public void structureButtons(String stageName, Structure data) {
-        addModifyCommonButtons(stageName, data, "/fxmls/layout/structure.fxml");
+    public void simpleItem() {
+        System.out.println("Adding Simple Item");
+        simpleItemButtons("Add Simple Item", new SimpleItem());
+    }
+
+    private void editSimpleItem() {
+        System.out.println("Editing Simple Item");
+        Item data = (Item) getData();
+        simpleItemButtons("Edit Simple Item", data.getSimpleItem());
+    }
+
+    private void deleteSimpleItem() {
+        System.out.println("Deleting simple item");
+        setWorkingFileAsModified();
+        ((Item) getData()).setSimpleItem(null);
+        initialize();
     }
 }

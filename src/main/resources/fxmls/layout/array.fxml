@@ -1,94 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
-
-<VBox prefWidth="300.0"
-      xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<VBox xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="bg.tusofia.controllers.layout.ArrayController">
     <padding>
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
     </padding>
-    <GridPane>
+    <GridPane vgap="5.0">
         <columnConstraints>
             <ColumnConstraints minWidth="10.0" prefWidth="10.0"/>
-            <ColumnConstraints maxWidth="130.0" minWidth="10.0" prefWidth="100.0"/>
-            <ColumnConstraints maxWidth="169.0" minWidth="10.0" prefWidth="169.0"/>
+            <ColumnConstraints maxWidth="130.0" minWidth="10.0" prefWidth="85.0"/>
+            <ColumnConstraints maxWidth="169.0" minWidth="10.0" prefWidth="120.0"/>
         </columnConstraints>
         <Text text="*"/>
         <Text text="Length :" GridPane.columnIndex="1"/>
-        <Text text="End criteria :" GridPane.columnIndex="1"
-              GridPane.rowIndex="1"/>
-        <HBox fx:id="previewEnd" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1"
-              GridPane.columnSpan="2" GridPane.rowIndex="2">
-            <Text text="[PREVIEW]">
-                <HBox.margin>
-                    <Insets left="10.0"/>
-                </HBox.margin>
-            </Text>
-            <Button text="Edit"/>
-            <Button text="Delete"/>
-        </HBox>
+        <Text text="End criteria :" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
         <TextField fx:id="length" maxWidth="140.0" prefWidth="40.0" GridPane.columnIndex="2"/>
-        <Button fx:id="endB" maxWidth="50.0" onAction="#addEnd" text="Add"
-                GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
-            <GridPane.margin>
-                <Insets left="10.0"/>
-            </GridPane.margin>
-        </Button>
-        <HBox fx:id="previewIndex" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1"
-              GridPane.columnSpan="2" GridPane.rowIndex="11">
-            <Text text="[PREVIEW]">
+        <HBox fx:id="previewEnd" spacing="10.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+            <Text fx:id="previewTextEnd" text="[PREVIEW]">
                 <HBox.margin>
                     <Insets left="10.0"/>
                 </HBox.margin>
             </Text>
-            <Button text="Edit"/>
-            <Button text="Delete"/>
+            <Button onAction="#editEnd" text="Edit"/>
+            <Button onAction="#deleteEnd" text="Delete"/>
         </HBox>
-        <HBox fx:id="previewSeparator" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1"
-              GridPane.columnSpan="2" GridPane.rowIndex="8">
-            <Text text="[PREVIEW]">
-                <HBox.margin>
-                    <Insets left="10.0"/>
-                </HBox.margin>
-            </Text>
-            <Button text="Edit"/>
-            <Button text="Delete"/>
-        </HBox>
-        <HBox fx:id="previewItem" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1"
-              GridPane.columnSpan="2" GridPane.rowIndex="5">
-            <Text text="[PREVIEW]">
-                <HBox.margin>
-                    <Insets left="10.0"/>
-                </HBox.margin>
-            </Text>
-            <Button text="Edit"/>
-            <Button text="Delete"/>
-        </HBox>
-        <Text text="Item :" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-        <Text text="Separator :" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
-        <Text text="Index :" GridPane.columnIndex="1" GridPane.rowIndex="10"/>
-        <Button fx:id="itemB" maxWidth="50.0" onAction="#addItem" text="Add"
-                GridPane.columnIndex="1" GridPane.rowIndex="6">
+        <Button fx:id="endB" maxWidth="50.0" onAction="#addEnd" text="Add" GridPane.columnIndex="1"
+                GridPane.columnSpan="2" GridPane.rowIndex="2">
             <GridPane.margin>
                 <Insets left="10.0"/>
             </GridPane.margin>
         </Button>
-        <Button fx:id="separatorB" maxWidth="50.0" onAction="#addSeparator" text="Add"
-                GridPane.columnIndex="1" GridPane.rowIndex="9">
+        <HBox fx:id="previewIndex" spacing="10.0" GridPane.columnIndex="1" GridPane.columnSpan="2"
+              GridPane.rowIndex="8">
+            <Text fx:id="previewTextIndex" text="[PREVIEW]">
+                <HBox.margin>
+                    <Insets left="10.0"/>
+                </HBox.margin>
+            </Text>
+            <Button onAction="#editIndex" text="Edit"/>
+            <Button onAction="#deleteIndex" text="Delete"/>
+        </HBox>
+        <HBox fx:id="previewSeparator" spacing="10.0" GridPane.columnIndex="1" GridPane.columnSpan="2"
+              GridPane.rowIndex="6">
+            <Text fx:id="previewTextSeparator" text="[PREVIEW]">
+                <HBox.margin>
+                    <Insets left="10.0"/>
+                </HBox.margin>
+            </Text>
+            <Button onAction="#editSeparator" text="Edit"/>
+            <Button onAction="#deleteSeparator" text="Delete"/>
+        </HBox>
+        <HBox fx:id="previewItem" spacing="10.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4">
+            <Text fx:id="previewTextItem" text="[PREVIEW]">
+                <HBox.margin>
+                    <Insets left="10.0"/>
+                </HBox.margin>
+            </Text>
+            <Button onAction="#editItem" text="Edit"/>
+            <Button onAction="#deleteItem" text="Delete"/>
+        </HBox>
+        <Text text="Item :" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        <Text text="Separator :" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+        <Text text="Index :" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+        <Button fx:id="itemB" maxWidth="50.0" onAction="#addItem" text="Add" GridPane.columnIndex="1"
+                GridPane.rowIndex="4">
             <GridPane.margin>
                 <Insets left="10.0"/>
             </GridPane.margin>
         </Button>
-        <Button fx:id="indexB" maxWidth="50.0" onAction="#addIndex" text="Add"
-                GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="12">
+        <Button fx:id="separatorB" maxWidth="50.0" onAction="#addSeparator" text="Add" GridPane.columnIndex="1"
+                GridPane.rowIndex="6">
+            <GridPane.margin>
+                <Insets left="10.0"/>
+            </GridPane.margin>
+        </Button>
+        <Button fx:id="indexB" maxWidth="50.0" onAction="#addIndex" text="Add" GridPane.columnIndex="1"
+                GridPane.columnSpan="2" GridPane.rowIndex="8">
             <GridPane.margin>
                 <Insets left="10.0"/>
             </GridPane.margin>

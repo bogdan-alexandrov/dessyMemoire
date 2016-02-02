@@ -1,10 +1,7 @@
 package bg.tusofia.controllers.layout;
 
 import bg.tusofia.controllers.AbstractController;
-import bg.tusofia.models.Item;
-import bg.tusofia.models.SimpleItem;
-import bg.tusofia.models.Structure;
-import bg.tusofia.models.Typedef;
+import bg.tusofia.models.*;
 import bg.tusofia.tools.CommonTools;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -24,12 +21,12 @@ public class TypedefController extends AbstractController {
     public void initialize() {
         Typedef data = (Typedef) getData();
 
-        buttonsGroup.managedProperty().bind(buttonsGroup.visibleProperty());
+        //buttonsGroup.managedProperty().bind(buttonsGroup.visibleProperty());
         previewGroup.managedProperty().bind(previewGroup.visibleProperty());
 
         typeName.setText(data.getTypename());
-        if (data.getLiteral() != null && data.getArray() != null
-                && data.getSimpleItem() != null && data.getStructure() != null) {
+        if (data.getLiteral() != null || data.getArray() != null
+                || data.getSimpleItem() != null || data.getStructure() != null) {
             buttonsGroup.setVisible(Boolean.FALSE);
             previewGroup.setVisible(Boolean.TRUE);
             if (data.getLiteral() != null && !data.getLiteral().isEmpty()) {
@@ -48,10 +45,10 @@ public class TypedefController extends AbstractController {
                 preview.setText("Array");
                 previewEdit.setOnAction(event -> editArray());
                 previewDelete.setOnAction(event -> deleteArray());
-            } else {
-                buttonsGroup.setVisible(Boolean.TRUE);
-                previewGroup.setVisible(Boolean.FALSE);
             }
+        } else {
+            buttonsGroup.setVisible(Boolean.TRUE);
+            previewGroup.setVisible(Boolean.FALSE);
         }
     }
 
@@ -137,12 +134,19 @@ public class TypedefController extends AbstractController {
         initialize();
     }
 
+    private void arrayButtons(String stageName, Array array) {
+        addModifyCommonButtons(stageName, array, "/fxmls/layout/array.fxml");
+    }
+
     public void addArray() {
-        //todo array
+        System.out.println("Adding Array");
+        arrayButtons("Add array", new Array());
     }
 
     public void editArray() {
-        //todo array
+        System.out.println("Editing Array");
+        Item data = (Item) getData();
+        arrayButtons("Edit array", data.getArray());
     }
 
     public void deleteArray() {

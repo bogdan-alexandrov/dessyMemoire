@@ -28,7 +28,8 @@ public abstract class AbstractController implements Initializable {
         READ_RIGHTS,
         LITERAL,
         REGEXP,
-        END
+        END,
+        SEPARATOR
     }
 
     private AbstractController mainController;

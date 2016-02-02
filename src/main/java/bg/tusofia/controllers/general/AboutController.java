@@ -2,18 +2,16 @@ package bg.tusofia.controllers.general;
 
 import bg.tusofia.controllers.AbstractController;
 import bg.tusofia.controllers.WizardController;
+import bg.tusofia.models.Dataset;
+import bg.tusofia.models.General;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
-import bg.tusofia.models.Dataset;
-import bg.tusofia.models.General;
 
-import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class AboutController extends AbstractController {

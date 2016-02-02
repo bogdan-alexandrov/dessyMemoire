@@ -40,8 +40,8 @@
             <Insets top="20.0"/>
         </padding>
     </HBox>
-    <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
-        <Button alignment="CENTER" onAction="#cancel" prefWidth="60.0" text="Cancel"/>
-        <Button alignment="CENTER" onAction="#save" prefWidth="60.0" text="Save"/>
+    <HBox alignment="BOTTOM_CENTER" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
+        <Button onAction="#cancel" prefWidth="60.0" text="Cancel"/>
+        <Button onAction="#save" prefWidth="60.0" text="Save"/>
     </HBox>
 </VBox>
