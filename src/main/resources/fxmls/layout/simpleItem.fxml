@@ -44,7 +44,7 @@
         <Text text="Description :" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="2">
             <ChoiceBox fx:id="typeBox" prefWidth="100.0"/>
-            <Button text="Add"/>
+            <Button text="Add" fx:id="addTypedef" onAction="#addTypedef"/>
         </HBox>
         <TextField fx:id="unit" maxWidth="140.0" prefWidth="40.0" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
         <TextField fx:id="length" maxWidth="140.0" prefWidth="40.0" GridPane.columnIndex="2" GridPane.rowIndex="2"/>

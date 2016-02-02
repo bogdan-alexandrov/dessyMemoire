@@ -55,6 +55,7 @@ public class TypedefController extends AbstractController {
     @Override
     public void updateParent() {
         //TODO update
+        //todo instanceof SimpleItemController
     }
 
     @Override

@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -38,40 +38,36 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "annot"
+        "annot"
 })
 @XmlRootElement(name = "description")
-public class Description implements java.io.Serializable{
+public class Description implements java.io.Serializable {
 
     @XmlElement(required = true)
-    protected   List<Annot>  annot;
+    protected List<Annot> annot;
 
     /**
      * Gets the value of the annot property.
-     * 
+     * <p>
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the annot property.
-     * 
+     * <p>
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getAnnot().add(newItem);
      * </pre>
-     * 
-     * 
+     * <p>
+     * <p>
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link Annot }
-     * 
-     * 
      */
     public List<Annot> getAnnot() {
         if (annot == null) {
@@ -83,9 +79,9 @@ public class Description implements java.io.Serializable{
 
     /**
      * <p>Java class for anonymous complex type.
-     * 
+     * <p>
      * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     * <p>
      * <pre>
      * &lt;complexType>
      *   &lt;simpleContent>
@@ -95,17 +91,15 @@ public class Description implements java.io.Serializable{
      *   &lt;/simpleContent>
      * &lt;/complexType>
      * </pre>
-     * 
-     * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "value"
+            "value"
     })
-    public static  class Annot implements java.io.Serializable{
+    public static class Annot implements java.io.Serializable {
 
         @XmlValue
-        protected  String value;
+        protected String value;
         @XmlAttribute(name = "lang")
         @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
         @XmlSchemaType(name = "language")
@@ -113,11 +107,9 @@ public class Description implements java.io.Serializable{
 
         /**
          * Gets the value of the value property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is
+         * {@link String }
          */
         public String getValue() {
             return value;
@@ -125,11 +117,9 @@ public class Description implements java.io.Serializable{
 
         /**
          * Sets the value of the value property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setValue(String value) {
             this.value = value;
@@ -137,11 +127,9 @@ public class Description implements java.io.Serializable{
 
         /**
          * Gets the value of the lang property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is
+         * {@link String }
          */
         public String getLang() {
             return lang;
@@ -149,16 +137,20 @@ public class Description implements java.io.Serializable{
 
         /**
          * Sets the value of the lang property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setLang(String value) {
             this.lang = value;
         }
 
+        public Annot() {
+        }
+
+        public Annot(String value) {
+            this.value = value;
+        }
     }
 
 }

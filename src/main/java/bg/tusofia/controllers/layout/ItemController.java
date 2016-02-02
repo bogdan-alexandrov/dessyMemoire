@@ -40,8 +40,8 @@ public class ItemController extends AbstractController {
         } else {
             buttonsBox.setVisible(false);
             previewBox.setVisible(true);
-            if (item.getSimpleItem() != null && !item.getSimpleItem().getType().value().isEmpty()) {
-                preview.setText("[SimpleItem] " + CommonTools.abbreviate(item.getSimpleItem().getType().value(), 8));
+            if (item.getSimpleItem() != null && !item.getSimpleItem().getTypeRef().isEmpty()) {
+                preview.setText("[SimpleItem] " + CommonTools.abbreviate(item.getSimpleItem().getTypeRef(), 8));
                 editButton.setOnAction(event -> editSimpleItem());
                 deleteButton.setOnAction(event -> deleteSimpleItem());
             }
