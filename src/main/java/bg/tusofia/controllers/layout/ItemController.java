@@ -60,7 +60,26 @@ public class ItemController extends AbstractController {
 
     @Override
     public void updateParent() {
-        //TODO 4 update parent
+        AbstractController controller = getMainController();
+        if (controller instanceof StructureController) {
+            ((Structure) controller.getData()).getItem().clear();
+            ((Structure) controller.getData()).getItem().add(updateData());
+        }
+        if (controller instanceof ArrayController){
+            ((Array) controller.getData()).getItem().clear();
+            ((Array) controller.getData()).getItem().add(updateData());
+        }
+        controller.initialize();
+    }
+
+    private Item updateData() {
+        Item item = (Item) getData();
+        if(name.getText()==null){
+            item.setName("");
+        } else {
+            item.setName(name.getText());
+        }
+        return item;
     }
 
     @Override
@@ -79,6 +98,7 @@ public class ItemController extends AbstractController {
     }
 
     public void structureButtons(String stageName, Structure data) {
+        updateData();
         addModifyCommonButtons(stageName, data, "/fxmls/layout/structure.fxml");
     }
 
@@ -101,6 +121,7 @@ public class ItemController extends AbstractController {
     }
 
     private void arrayButtons(String stageName, Array array) {
+        updateData();
         addModifyCommonButtons(stageName, array, "/fxmls/layout/array.fxml");
     }
 
@@ -123,6 +144,7 @@ public class ItemController extends AbstractController {
     }
 
     public void simpleItemButtons(String stageName, SimpleItem data) {
+        updateData();
         addModifyCommonButtons(stageName, data, "/fxmls/layout/simpleItem.fxml");
     }
 

@@ -5,7 +5,9 @@ import bg.tusofia.tools.FileChooserHelper;
 import bg.tusofia.tools.PromBox;
 import bg.tusofia.tools.WorkingFile;
 import javafx.collections.FXCollections;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -49,11 +51,12 @@ public class WizardController extends AbstractController {
     public TitledPane layoutPane;
 
     private Dataset dataset;
+    private Typedef typedefToBeModified;
     private Cluster clusterToBeModified;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //TODO change it to general
+        //TODO changeit to general
         accordion.setExpandedPane(layoutPane);
 
         /////////////general
@@ -73,28 +76,58 @@ public class WizardController extends AbstractController {
         );
         byteSize.textProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    dataset.getLayout().setByteSize(BigInteger.valueOf(Integer.valueOf(newValue)));
+                    dataset.getLayout().setByteSize(new BigInteger(newValue));
                     setWorkingFileAsModified();
                 }
         );
+        byteSize.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            String character = event.getCharacter();
+            if (!isNumeric(character)) {
+                event.consume();
+            }
+        });
         float32Exponent.textProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    dataset.getLayout().setFloat32Exponent(BigInteger.valueOf(Long.valueOf(newValue)));
+                    dataset.getLayout().setFloat32Exponent(new BigInteger(newValue));
                     setWorkingFileAsModified();
                 }
         );
+        float32Exponent.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            String character = event.getCharacter();
+            if (!isNumeric(character)) {
+                event.consume();
+            }
+        });
         float32Mantissa.textProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    dataset.getLayout().setFloat32Mantissa(BigInteger.valueOf(Long.valueOf(newValue)));
+                    dataset.getLayout().setFloat32Mantissa(new BigInteger(newValue));
                     setWorkingFileAsModified();
                 }
         );
+        float32Mantissa.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            String character = event.getCharacter();
+            if (!isNumeric(character)) {
+                event.consume();
+            }
+        });
+        float64Exponent.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            String character = event.getCharacter();
+            if (!isNumeric(character)) {
+                event.consume();
+            }
+        });
         float64Exponent.textProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    dataset.getLayout().setFloat64Exponent(BigInteger.valueOf(Long.valueOf(newValue)));
+                    dataset.getLayout().setFloat64Exponent(new BigInteger(newValue));
                     setWorkingFileAsModified();
                 }
         );
+        float64Mantissa.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            String character = event.getCharacter();
+            if (!isNumeric(character)) {
+                event.consume();
+            }
+        });
         float64Mantissa.textProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     dataset.getLayout().setFloat64Mantissa(BigInteger.valueOf(Long.valueOf(newValue)));
@@ -264,7 +297,7 @@ public class WizardController extends AbstractController {
             Button buttonEdit = new Button("Edit");
             String idEditB = "typedef-edit-" + i;
             buttonEdit.setId(idEditB);
-            // TODO 2 buttonEdit.setOnAction(event -> modifyTypedef(idEditB));
+            buttonEdit.setOnAction(event -> modifyTypedef(idEditB));
 
             Button buttonDelete = new Button("Delete");
             String id = "typedef-delete-" + i;
@@ -278,6 +311,7 @@ public class WizardController extends AbstractController {
         Button addTypedefB = new Button("Add");
         addTypedefB.setOnAction(event -> addTypedef());
         typedefsBox.getChildren().add(addTypedefB);
+        VBox.setMargin(addTypedefB, new Insets(0, 0, 15, 0));
 
         //LAYOUT ENDs here
 
@@ -398,6 +432,19 @@ public class WizardController extends AbstractController {
     @Override
     public void updateParent() {
         //don't need it
+    }
+
+    private Layout updateDataLayout() {
+        Layout layout = ((Dataset) getData()).getLayout();
+        layout.setCoding(codingChoiceBox.getValue());
+        layout.setByteOrder(byteOrderChoiceBox.getValue());
+        layout.setByteSize(new BigInteger(byteSize.getText() == null ? "0" : byteSize.getText()));
+        layout.setFloat32Exponent(new BigInteger(float32Exponent.getText().isEmpty() ? "0" : float32Exponent.getText()));
+        layout.setFloat64Exponent(new BigInteger(float64Exponent.getText().isEmpty() ? "0" : float64Exponent.getText()));
+        layout.setFloat32Mantissa(new BigInteger(float32Mantissa.getText().isEmpty() ? "0" : float32Mantissa.getText()));
+        layout.setFloat64Mantissa(new BigInteger(float64Mantissa.getText().isEmpty() ? "0" : float64Mantissa.getText()));
+
+        return layout;
     }
 
     @Override
@@ -534,6 +581,7 @@ public class WizardController extends AbstractController {
     }
 
     public void clusterButtons(String stageName, Cluster data) {
+        updateDataLayout();
         addModifyCommonButtons(stageName, data, "/fxmls/layout/cluster.fxml");
     }
 
@@ -542,7 +590,16 @@ public class WizardController extends AbstractController {
         typedefButtons("Add Typedef", new Typedef());
     }
 
+    private void modifyTypedef(String buttonId) {
+        System.out.println("Editing Typedef");
+        int index = Integer.valueOf((String) buttonId.subSequence(buttonId.lastIndexOf('-') + 1, (buttonId.length())));
+        setTypedefToBeModified(dataset.getLayout().getTypedef().get(index));
+
+        typedefButtons("Edit Cluster", getTypedefToBeModified());
+    }
+
     private void typedefButtons(String stageName, Typedef typedef) {
+        updateDataLayout();
         addModifyCommonButtons(stageName, typedef, "/fxmls/layout/typedef.fxml");
     }
 
@@ -566,5 +623,13 @@ public class WizardController extends AbstractController {
 
     public void setClusterToBeModified(Cluster clusterToBeModified) {
         this.clusterToBeModified = clusterToBeModified;
+    }
+
+    public Typedef getTypedefToBeModified() {
+        return typedefToBeModified;
+    }
+
+    public void setTypedefToBeModified(Typedef typedefToBeModified) {
+        this.typedefToBeModified = typedefToBeModified;
     }
 }

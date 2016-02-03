@@ -22,19 +22,24 @@ public class ClusterController extends AbstractController {
 
     @Override
     public void updateParent() {
-        Cluster data = (Cluster) getData();
-        if (!name.getText().isEmpty()) {
-            data.setName(name.getText());
-        }
-        if (!url.getText().isEmpty()) {
-            data.setURL(url.getText());
-        }
+        Cluster data = updateData();
 
         WizardController controller = (WizardController) getMainController();
         ((Dataset) controller.getData()).getLayout().getCluster().remove(controller.getClusterToBeModified());
         ((Dataset) controller.getData()).getLayout().getCluster().add(data);
 
         controller.initialize();
+    }
+
+    private Cluster updateData() {
+        Cluster data = (Cluster) getData();
+        if (name.getText() != null && !name.getText().isEmpty()) {
+            data.setName(name.getText());
+        }
+        if (url.getText() != null && !url.getText().isEmpty()) {
+            data.setURL(url.getText());
+        }
+        return data;
     }
 
     @Override
@@ -84,6 +89,7 @@ public class ClusterController extends AbstractController {
     }
 
     public void structureButtons(String stageName, Structure data) {
+        updateData();
         addModifyCommonButtons(stageName, data, "/fxmls/layout/structure.fxml");
     }
 

@@ -86,6 +86,12 @@ public class SimpleItemController extends AbstractController {
 
     @Override
     public void updateParent() {
+        ItemController itemController = (ItemController) getMainController();
+        ((Item) itemController.getData()).setSimpleItem(updateData());
+        itemController.initialize();
+    }
+
+    private SimpleItem updateData() {
         SimpleItem simpleItem = (SimpleItem) getData();
         simpleItem.setTypeRef(typeBox.getValue());
         simpleItem.setUnit(unit.getText());
@@ -97,14 +103,12 @@ public class SimpleItemController extends AbstractController {
         desc.getAnnot().add(new Description.Annot(description.getText()));
         simpleItem.setDescription(desc);
 
-        ItemController itemController = (ItemController) getMainController();
-        ((Item) itemController.getData()).setSimpleItem(simpleItem);
-        itemController.initialize();
+        return simpleItem;
     }
 
     @Override
     protected boolean validate() {
-        return typeBox!= null && typeBox.getValue()!= null && typeBox.getValue().isEmpty();
+        return typeBox != null && typeBox.getValue() != null && typeBox.getValue().isEmpty();
     }
 
     @Override
@@ -113,13 +117,14 @@ public class SimpleItemController extends AbstractController {
     }
 
     public void addEnd() {
-        SimpleItem data = (SimpleItem) getData();
+        SimpleItem data = updateData();
         data.setEnd(new SeparatorType());
         addModifyCommonButtons("Add End", data, "/fxmls/layout/strings.fxml", AdditionalInfoTypes.END);
     }
 
     public void editEnd() {
-        SimpleItem data = (SimpleItem) getData();
+        SimpleItem data = updateData();
+
         addModifyCommonButtons("Add End", data, "/fxmls/layout/strings.fxml", AdditionalInfoTypes.END);
     }
 
@@ -133,16 +138,3 @@ public class SimpleItemController extends AbstractController {
         addModifyCommonButtons("Add Typedef", new Typedef(), "/fxmls/layout/typedef.fxml");
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

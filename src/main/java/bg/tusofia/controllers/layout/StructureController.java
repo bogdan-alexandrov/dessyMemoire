@@ -1,6 +1,7 @@
 package bg.tusofia.controllers.layout;
 
 import bg.tusofia.controllers.AbstractController;
+import bg.tusofia.models.Cluster;
 import bg.tusofia.models.Item;
 import bg.tusofia.models.Structure;
 import bg.tusofia.tools.CommonTools;
@@ -50,7 +51,13 @@ public class StructureController extends AbstractController {
 
     @Override
     public void updateParent() {
-        //todo... 4 update parent
+        AbstractController controller = getMainController();
+        if (controller instanceof ClusterController) {
+            ((Cluster) controller.getData()).setStructure((Structure) getData());
+        } else if (controller instanceof ItemController) {
+            ((Item) controller.getData()).setStructure((Structure) getData());
+        }
+        controller.initialize();
     }
 
     @Override

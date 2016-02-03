@@ -1,8 +1,10 @@
 package bg.tusofia.controllers.layout;
 
 import bg.tusofia.controllers.AbstractController;
+import bg.tusofia.controllers.WizardController;
 import bg.tusofia.models.*;
 import bg.tusofia.tools.CommonTools;
+import bg.tusofia.tools.WorkingFile;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -54,23 +56,41 @@ public class TypedefController extends AbstractController {
 
     @Override
     public void updateParent() {
-        //TODO update
-        //todo instanceof SimpleItemController
+        AbstractController controller = getMainController();
+        if (controller instanceof WizardController) {
+            ((Dataset) controller.getData()).getLayout().getTypedef().add(updateData());
+        }
+        if (controller instanceof SimpleItemController) {
+            WorkingFile.getInstance().getDataset().getLayout().getTypedef().add(updateData());
+            ((SimpleItem) controller.getData()).setTypeRef(typeName.getText());
+        }
+        controller.initialize();
+    }
+
+    private Typedef updateData() {
+        Typedef typedef = (Typedef) getData();
+        typedef.setTypename(typeName.getText());
+        return typedef;
     }
 
     @Override
     protected boolean validate() {
-        return false;
-        //TODO validation
+        Typedef typedef = updateData();
+        return (typedef.getTypename() != null && !typedef.getTypename().isEmpty()) &&
+                (typedef.getArray() != null || typedef.getSimpleItem() != null
+                        || typedef.getStructure() != null || typedef.getLiteral() != null);
     }
 
     @Override
     protected String errorMessage() {
-        return null;
-        //TODO errors
+        if ((typeName.getText().isEmpty())) {
+            return "Please enter typename.";
+        }
+        return "Please add \"Simple Item\" or \"Array\" or \"Structure\" or \"Literal\".";
     }
 
     public void literalButtons(String stageName, String data) {
+        updateData();
         addModifyCommonButtons(stageName, data, "/fxmls/layout/strings.fxml", AdditionalInfoTypes.LITERAL);
     }
 
@@ -93,6 +113,7 @@ public class TypedefController extends AbstractController {
     }
 
     public void structureButtons(String stageName, Structure data) {
+        updateData();
         addModifyCommonButtons(stageName, data, "/fxmls/layout/structure.fxml");
     }
 
@@ -115,6 +136,7 @@ public class TypedefController extends AbstractController {
     }
 
     public void simpleItemButtons(String stageName, SimpleItem data) {
+        updateData();
         addModifyCommonButtons(stageName, data, "/fxmls/layout/simpleItem.fxml");
     }
 
@@ -136,6 +158,7 @@ public class TypedefController extends AbstractController {
     }
 
     private void arrayButtons(String stageName, Array array) {
+        updateData();
         addModifyCommonButtons(stageName, array, "/fxmls/layout/array.fxml");
     }
 

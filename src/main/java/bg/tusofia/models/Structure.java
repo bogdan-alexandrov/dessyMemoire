@@ -90,10 +90,10 @@ public class Structure implements java.io.Serializable {
     public String getPreview() {
         String res;
         int previewChars = 15;
-        if (getItem() != null) {
+        if (getItem() != null && !getItem().isEmpty()) {
             res = "Item : ";
             res += getPreviewDescription(getItem().get(0).getName(), previewChars);
-        } else if (getLiteral() != null) {
+        } else if (getLiteral() != null && !getLiteral().isEmpty()) {
             res = "Literal : ";
             res += getPreviewDescription(getLiteral().get(0), previewChars);
         } else if (getRegexp() != null) {

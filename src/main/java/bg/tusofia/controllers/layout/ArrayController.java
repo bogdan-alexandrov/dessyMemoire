@@ -73,22 +73,35 @@ public class ArrayController extends AbstractController {
 
     @Override
     public void updateParent() {
-        //todo update
+        ItemController itemController = (ItemController) getMainController();
+        ((Item) itemController.getData()).setArray(updateData());
+        itemController.initialize();
+    }
+
+    private Array updateData() {
+        Array array = (Array) getData();
+        array.setLength(length.getText());
+
+        return array;
     }
 
     @Override
     protected boolean validate() {
-        return false;
-        //todo validate
+        Array array = (Array) getData();
+        return length.getText() != null && !length.getText().isEmpty() &&
+                array.getItem() != null && !array.getItem().isEmpty();
     }
 
     @Override
     protected String errorMessage() {
-        return null;
-        //todo errors
+        if(length.getText() == null || !length.getText().isEmpty()){
+            return "Enter \"Length\"";
+        }
+        return "Item can't be empty";
     }
 
     public void indexButtons(String stageName, Index data) {
+        updateData();
         addModifyCommonButtons(stageName, data, "/fxmls/layout/index.fxml");
     }
 
@@ -105,10 +118,13 @@ public class ArrayController extends AbstractController {
 
     public void deleteIndex() {
         Array data = (Array) getData();
+        setWorkingFileAsModified();
         data.setIndex(null);
+        initialize();
     }
 
     public void itemButtons(String stageName, Item data) {
+        updateData();
         addModifyCommonButtons(stageName, data, "/fxmls/layout/item.fxml");
     }
 
@@ -133,27 +149,30 @@ public class ArrayController extends AbstractController {
     public void addEnd() {
         Array data = (Array) getData();
         data.setEndCriteria(new SeparatorType());
+        updateData();
         addModifyCommonButtons("Add End", data, "/fxmls/layout/strings.fxml", AdditionalInfoTypes.END);
     }
 
     public void editEnd() {
-        Array data = (Array) getData();
+        Array data =
+                updateData();
         addModifyCommonButtons("Add End", data, "/fxmls/layout/strings.fxml", AdditionalInfoTypes.END);
     }
 
     public void deleteEnd() {
+        setWorkingFileAsModified();
         ((Array) getData()).setEndCriteria(null);
         initialize();
     }
 
     public void addSeparator() {
-        Array data = (Array) getData();
+        Array data = updateData();
         data.setSeparator(new SeparatorType());
         addModifyCommonButtons("Add Separator", data, "/fxmls/layout/strings.fxml", AdditionalInfoTypes.SEPARATOR);
     }
 
     public void editSeparator() {
-        Array data = (Array) getData();
+        Array data = updateData();
         addModifyCommonButtons("Add Separator", data, "/fxmls/layout/strings.fxml", AdditionalInfoTypes.SEPARATOR);
     }
 
