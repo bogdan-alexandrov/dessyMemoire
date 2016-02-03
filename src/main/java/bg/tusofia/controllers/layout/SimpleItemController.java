@@ -108,7 +108,7 @@ public class SimpleItemController extends AbstractController {
 
     @Override
     protected boolean validate() {
-        return typeBox != null && typeBox.getValue() != null && typeBox.getValue().isEmpty();
+        return typeBox != null && typeBox.getValue() != null && !typeBox.getValue().isEmpty();
     }
 
     @Override

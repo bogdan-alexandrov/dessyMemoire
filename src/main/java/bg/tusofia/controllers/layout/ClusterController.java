@@ -44,7 +44,9 @@ public class ClusterController extends AbstractController {
 
     @Override
     protected boolean validate() {
-        return ((Cluster) getData()).getStructure() != null && !url.getText().isEmpty() && !name.getText().isEmpty();
+        return ((Cluster) getData()).getStructure() != null &&
+                url.getText() != null && !url.getText().isEmpty() &&
+                name.getText() != null && !name.getText().isEmpty();
     }
 
     @Override
@@ -52,11 +54,11 @@ public class ClusterController extends AbstractController {
         String message;
         if (((Cluster) getData()).getStructure() == null) {
             message = "Please enter structure.";
-        } else if (url.getText().isEmpty()) {
+        } else if (url.getText() == null || url.getText().isEmpty()) {
             message = "URL can't be empty";
-        } else if (name.getText().isEmpty()) {
+        } else if (name.getText() == null || name.getText().isEmpty()) {
             message = "Name can't be empty";
-        } else { // default message
+        } else {
             message = "Error";
         }
         return message;

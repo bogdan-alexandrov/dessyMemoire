@@ -4,6 +4,7 @@ import bg.tusofia.controllers.AbstractController;
 import bg.tusofia.models.Cluster;
 import bg.tusofia.models.Item;
 import bg.tusofia.models.Structure;
+import bg.tusofia.models.Typedef;
 import bg.tusofia.tools.CommonTools;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -39,7 +40,7 @@ public class StructureController extends AbstractController {
             if (data.getRegexp() != null) {
                 preview.setText("[Regexp] " + CommonTools.abbreviate(data.getRegexp(), 8));
                 editButton.setOnAction(event -> editRegexp());
-                deleteButton.setOnAction(event -> deleteRagexp());
+                deleteButton.setOnAction(event -> deleteRegexp());
             }
             if (data.getItem() != null && !data.getItem().isEmpty()) {
                 preview.setText(CommonTools.abbreviate(data.getItem().get(0).getName(), 8));
@@ -56,6 +57,8 @@ public class StructureController extends AbstractController {
             ((Cluster) controller.getData()).setStructure((Structure) getData());
         } else if (controller instanceof ItemController) {
             ((Item) controller.getData()).setStructure((Structure) getData());
+        } else if (controller instanceof TypedefController) {
+            ((Typedef) controller.getData()).setStructure((Structure) getData());
         }
         controller.initialize();
     }
@@ -109,8 +112,8 @@ public class StructureController extends AbstractController {
         initialize();
     }
 
-    private void deleteRagexp() {
-        System.out.println("Deleting ragexp");
+    private void deleteRegexp() {
+        System.out.println("Deleting regexp");
         setWorkingFileAsModified();
         ((Structure) getData()).setRegexp(null);
         initialize();
