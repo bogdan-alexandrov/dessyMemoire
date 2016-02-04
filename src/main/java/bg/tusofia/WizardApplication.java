@@ -26,5 +26,3 @@ public class WizardApplication extends Application {
         launch(args);
     }
 }
-
-//TODO Information icons - properties

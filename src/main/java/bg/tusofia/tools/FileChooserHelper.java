@@ -36,7 +36,9 @@ public class FileChooserHelper {
 
         if (file != null) {
             if (file.getPath().endsWith("xml") && !validation) {
-                PromBox.alert("Validation error", "Validation error.");
+                PromBox.alert("Validation error", "All required fields are marked with star. " +
+                        "Validation is activated to the export in xml file. " +
+                        "Use temporary file to save your current progress.");
                 result = false;
             } else {
                 result = JAXBUtilities.marshall(file.getPath(), dataset);

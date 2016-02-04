@@ -75,7 +75,9 @@ public abstract class AbstractController implements Initializable {
             updateParent();
             getStage().close();
         } else {
-            PromBox.alert("Validation error", errorMessage());
+            PromBox.alert("All required fields are marked with star. " +
+                    "Validation is activated to the export in xml file. " +
+                    "Use temporary file to save your current progress.", errorMessage());
         }
     }
 

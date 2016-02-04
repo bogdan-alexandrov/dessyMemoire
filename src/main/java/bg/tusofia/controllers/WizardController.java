@@ -56,8 +56,7 @@ public class WizardController extends AbstractController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //TODO changeit to general
-        accordion.setExpandedPane(layoutPane);
+        accordion.setExpandedPane(generalPane);
 
         /////////////general
         setId.textProperty().addListener(
@@ -449,15 +448,19 @@ public class WizardController extends AbstractController {
 
     @Override
     public boolean validate() {
-        //TODO validation
-        return false;
+        General general = dataset.getGeneral();
+        Layout layout = dataset.getLayout();
+        return setId.getText() != null && !setId.getText().isEmpty()
+                && general.getAbout() != null && general.getSource() != null
+                && general.getVersion() != null && general.getAccessRights() != null
+                && !codingChoiceBox.getValue().isEmpty()
+                && layout.getTypedef() != null && !layout.getTypedef().isEmpty()
+                && layout.getCluster() != null && !layout.getCluster().isEmpty();
     }
 
     @Override
     protected String errorMessage() {
-        //TODO errors
-
-        return null;
+        return "Error";
     }
 
     ////------------Buttons BEGIN------------////
