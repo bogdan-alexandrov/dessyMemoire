@@ -225,13 +225,13 @@ public class Item implements java.io.Serializable, Cloneable {
 
     public String preview() {
         if (getStructure() != null) {
-            return "Contains : structure";
+            return "-> structure";
         }
         if (getArray() != null) {
-            return "Contains : array";
+            return "-> array";
         }
         if (getSimpleItem() != null) {
-            return "Contains : simple item";
+            return "-> simple item";
         }
         return "No Type";
     }

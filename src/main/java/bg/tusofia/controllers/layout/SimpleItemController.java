@@ -25,19 +25,29 @@ public class SimpleItemController extends AbstractController {
     public TextField format;
     public Button add;
     public TextArea description;
-    public ChoiceBox<String> typeBox;
+    public ChoiceBox<String> typedefBox;
+    public TextField type;
     public HBox previewBox;
     public GridPane table;
     public Button addTypedef;
+    public ChoiceBox<String> typeBox;
 
     @Override
     public void initialize() {
+        previewBox.managedProperty().bind(previewBox.visibleProperty());
+
         SimpleItem simpleItem = (SimpleItem) getData();
 
-        typeBox.setItems(FXCollections.observableArrayList(CommonTools.getListOfTypedef()));
+        typeBox.setItems(FXCollections.observableArrayList(Predefined.valuesAsString()));
+        typeBox.getItems().add(0, "");
+        if (simpleItem.getType() != null && !simpleItem.getType().value().isEmpty()) {
+            typeBox.setValue(simpleItem.getType().value());
+        }
+
+        typedefBox.setItems(FXCollections.observableArrayList(CommonTools.getListOfTypedef()));
 
         if (simpleItem.getTypeRef() != null && !simpleItem.getTypeRef().isEmpty()) {
-            typeBox.setValue(simpleItem.getTypeRef());
+            typedefBox.setValue(simpleItem.getTypeRef());
         }
 
         numSystem.setItems(FXCollections.observableArrayList("roman",
@@ -93,9 +103,16 @@ public class SimpleItemController extends AbstractController {
 
     private SimpleItem updateData() {
         SimpleItem simpleItem = (SimpleItem) getData();
-        simpleItem.setTypeRef(typeBox.getValue());
+        if (!typeBox.getValue().isEmpty()) {
+            simpleItem.setType(Predefined.fromValue(typeBox.getValue()));
+        } else {
+            simpleItem.setType(null);
+        }
+        simpleItem.setTypeRef(typedefBox.getValue());
         simpleItem.setUnit(unit.getText());
-        simpleItem.setLength(new BigInteger(length.getText()));
+        if (length.getText() != null && !length.getText().isEmpty()) {
+            simpleItem.setLength(new BigInteger(length.getText()));
+        }
         simpleItem.setFormat(format.getText());
         simpleItem.setNumSystem(numSystem.getValue());
         Description desc = new Description();
@@ -108,12 +125,13 @@ public class SimpleItemController extends AbstractController {
 
     @Override
     protected boolean validate() {
-        return typeBox != null && typeBox.getValue() != null && !typeBox.getValue().isEmpty();
+        return (typedefBox != null && typedefBox.getValue() != null && !typedefBox.getValue().isEmpty()) ||
+                (typeBox != null && typeBox.getValue() != null && !typeBox.getValue().isEmpty());
     }
 
     @Override
     protected String errorMessage() {
-        return "Please enter type.";
+        return "Please enter type or type reference.";
     }
 
     public void addEnd() {

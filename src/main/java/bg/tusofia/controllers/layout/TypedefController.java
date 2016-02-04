@@ -23,7 +23,7 @@ public class TypedefController extends AbstractController {
     public void initialize() {
         Typedef data = (Typedef) getData();
 
-        //buttonsGroup.managedProperty().bind(buttonsGroup.visibleProperty());
+        buttonsGroup.managedProperty().bind(buttonsGroup.visibleProperty());
         previewGroup.managedProperty().bind(previewGroup.visibleProperty());
 
         typeName.setText(data.getTypename());

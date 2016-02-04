@@ -595,7 +595,7 @@ public class WizardController extends AbstractController {
         int index = Integer.valueOf((String) buttonId.subSequence(buttonId.lastIndexOf('-') + 1, (buttonId.length())));
         setTypedefToBeModified(dataset.getLayout().getTypedef().get(index));
 
-        typedefButtons("Edit Cluster", getTypedefToBeModified());
+        typedefButtons("Edit Typedef", getTypedefToBeModified());
     }
 
     private void typedefButtons(String stageName, Typedef typedef) {

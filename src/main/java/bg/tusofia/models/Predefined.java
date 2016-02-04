@@ -3,6 +3,8 @@ package bg.tusofia.models;
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -81,6 +83,14 @@ public enum Predefined implements java.io.Serializable{
             }
         }
         throw new IllegalArgumentException(v);
+    }
+
+    public static List<String> valuesAsString(){
+        List<String> result = new ArrayList<>();
+        for(Predefined predefined : values()){
+            result.add(predefined.value);
+        }
+        return result;
     }
 
 }

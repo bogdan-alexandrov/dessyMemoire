@@ -130,7 +130,7 @@ public class StructureController extends AbstractController {
     private void editItem() {
         Structure data = (Structure) getData();
         if (data.getItem() != null && !data.getItem().isEmpty()) {
-            itemButtons("Add Item", data.getItem().get(0));
+            itemButtons("Edit Item", data.getItem().get(0));
         }
     }
 

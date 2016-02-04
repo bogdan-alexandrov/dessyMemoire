@@ -23,11 +23,11 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0"/>
             <RowConstraints minHeight="10.0" prefHeight="30.0"/>
         </rowConstraints>
-        <Button onAction="#addLiteral" prefWidth="100.0" text="Literal" />
+        <Button onAction="#addLiteral" prefWidth="100.0" text="Literal"/>
         <Button onAction="#addRegexp" prefWidth="100.0" text="Regexp" GridPane.rowIndex="1"/>
         <Button onAction="#addItem" prefWidth="100.0" text="Item" GridPane.rowIndex="2"/>
     </GridPane>
-    <HBox fx:id="previewBox" maxWidth="300.0" prefHeight="30.0" spacing="10.0">
+    <HBox fx:id="previewBox" spacing="10.0">
         <Text text="*"/>
         <Text fx:id="preview" text="[PREVIEW]">
             <HBox.margin>
@@ -37,7 +37,7 @@
         <Button fx:id="editButton" text="Modify"/>
         <Button fx:id="deleteButton" text="Delete"/>
         <padding>
-            <Insets top="20.0"/>
+            <Insets top="10.0"/>
         </padding>
     </HBox>
     <HBox alignment="BOTTOM_CENTER" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
