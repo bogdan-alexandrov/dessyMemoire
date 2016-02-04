@@ -19,6 +19,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 public abstract class AbstractController implements Initializable {
 
@@ -50,6 +51,7 @@ public abstract class AbstractController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Preferences.userRoot().node(this.getClass().getName());
     }
 
     public AbstractController getMainController() {
@@ -96,9 +98,8 @@ public abstract class AbstractController implements Initializable {
     public void addModifyCommonButtons(String stageName, Serializable data, String fxmlPath, AdditionalInfoTypes additionalInfoType) {
         setWorkingFileAsModified();
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath), ResourceBundle.getBundle("tooltips"));
             Parent root = fxmlLoader.load();
-
             Stage stage = new Stage();
             stage.setTitle(stageName);
             stage.setScene(new Scene(root));
