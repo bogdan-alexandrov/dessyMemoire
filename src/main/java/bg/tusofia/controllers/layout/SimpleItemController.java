@@ -103,7 +103,7 @@ public class SimpleItemController extends AbstractController {
 
     private SimpleItem updateData() {
         SimpleItem simpleItem = (SimpleItem) getData();
-        if (!typeBox.getValue().isEmpty()) {
+        if (typeBox.getValue() != null && !typeBox.getValue().isEmpty()) {
             simpleItem.setType(Predefined.fromValue(typeBox.getValue()));
         } else {
             simpleItem.setType(null);
