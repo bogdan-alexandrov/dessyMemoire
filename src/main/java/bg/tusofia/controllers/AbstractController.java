@@ -100,7 +100,8 @@ public abstract class AbstractController implements Initializable {
     public void addModifyCommonButtons(String stageName, Serializable data, String fxmlPath, AdditionalInfoTypes additionalInfoType) {
         setWorkingFileAsModified();
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath), ResourceBundle.getBundle("tooltips"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath),
+                    ResourceBundle.getBundle("tooltips"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle(stageName);

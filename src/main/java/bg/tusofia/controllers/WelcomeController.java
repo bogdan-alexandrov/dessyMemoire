@@ -12,6 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 public class WelcomeController {
 
@@ -44,8 +46,10 @@ public class WelcomeController {
     private void startWorkingWith(Dataset dataset) {
         System.out.println("Opening wizard ...");
         WorkingFile.getInstance().setDataset(dataset);
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxmls/wizard.fxml"));
+        try {        Preferences.userRoot().node(this.getClass().getName());
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxmls/wizard.fxml"),
+                    ResourceBundle.getBundle("tooltips"));
+
             Parent root = fxmlLoader.load();
             stage.close();
             stage.setTitle("The magic wizard");
