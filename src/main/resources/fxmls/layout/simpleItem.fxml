@@ -3,9 +3,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.effect.ImageInput?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -22,7 +26,8 @@
         <columnConstraints>
             <ColumnConstraints minWidth="10.0" prefWidth="10.0"/>
             <ColumnConstraints maxWidth="130.0" minWidth="10.0" prefWidth="100.0"/>
-            <ColumnConstraints maxWidth="169.0" minWidth="10.0" prefWidth="169.0"/>
+            <ColumnConstraints maxWidth="150.0" minWidth="10.0" prefWidth="150.0"/>
+            <ColumnConstraints/>
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0"/>
@@ -43,8 +48,41 @@
         <Text text="Length :" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
         <Text text="Format :" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
         <Text text="Numeral system :" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-        <Text text="End :" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
-        <Text text="Description :" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
+        <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <Text text="End :"/>
+            <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
+                        prefWidth="15.0">
+                <tooltip>
+                    <Tooltip text="%simpleItem.end"/>
+                </tooltip>
+                <effect>
+                    <ImageInput>
+                        <source>
+                            <Image url="@../../img/info_icon.png"/>
+                        </source>
+                    </ImageInput>
+                </effect>
+            </ScrollPane>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="9">
+            <Text text="Description :"/>
+            <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
+                        prefWidth="15.0">
+                <tooltip>
+                    <Tooltip text="%simpleItem.description"/>
+                </tooltip>
+                <effect>
+                    <ImageInput>
+                        <source>
+                            <Image url="@../../img/info_icon.png"/>
+                        </source>
+                    </ImageInput>
+                </effect>
+                <HBox.margin>
+                    <Insets left="5.0"/>
+                </HBox.margin>
+            </ScrollPane>
+        </HBox>
         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="2">
             <ChoiceBox fx:id="typedefBox" prefWidth="90.0"/>
             <Button fx:id="addTypedef" onAction="#addTypedef" prefWidth="40.0" text="Add"/>
@@ -83,6 +121,84 @@
                 <Insets/>
             </opaqueInsets>
         </Separator>
+        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
+                    GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+            <tooltip>
+                <Tooltip text="%simpleItem.typedef"/>
+            </tooltip>
+            <effect>
+                <ImageInput>
+                    <source>
+                        <Image url="@../../img/info_icon.png"/>
+                    </source>
+                </ImageInput>
+            </effect>
+        </ScrollPane>
+        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
+                    GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <tooltip>
+                <Tooltip text="%simpleItem.type"/>
+            </tooltip>
+            <effect>
+                <ImageInput>
+                    <source>
+                        <Image url="@../../img/info_icon.png"/>
+                    </source>
+                </ImageInput>
+            </effect>
+        </ScrollPane>
+        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
+                    GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <tooltip>
+                <Tooltip text="%simpleItem.unit"/>
+            </tooltip>
+            <effect>
+                <ImageInput>
+                    <source>
+                        <Image url="@../../img/info_icon.png"/>
+                    </source>
+                </ImageInput>
+            </effect>
+        </ScrollPane>
+        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
+                    GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <tooltip>
+                <Tooltip text="%simpleItem.length"/>
+            </tooltip>
+            <effect>
+                <ImageInput>
+                    <source>
+                        <Image url="@../../img/info_icon.png"/>
+                    </source>
+                </ImageInput>
+            </effect>
+        </ScrollPane>
+        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
+                    GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <tooltip>
+                <Tooltip text="%simpleItem.format"/>
+            </tooltip>
+            <effect>
+                <ImageInput>
+                    <source>
+                        <Image url="@../../img/info_icon.png"/>
+                    </source>
+                </ImageInput>
+            </effect>
+        </ScrollPane>
+        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
+                    GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+            <tooltip>
+                <Tooltip text="%simpleItem.numSystem"/>
+            </tooltip>
+            <effect>
+                <ImageInput>
+                    <source>
+                        <Image url="@../../img/info_icon.png"/>
+                    </source>
+                </ImageInput>
+            </effect>
+        </ScrollPane>
     </GridPane>
     <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
         <Button alignment="CENTER" onAction="#cancel" prefWidth="60.0" text="Cancel"/>
