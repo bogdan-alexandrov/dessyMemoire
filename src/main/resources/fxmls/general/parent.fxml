@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.effect.ImageInput?>
 <?import javafx.scene.image.Image?>
-<VBox prefHeight="200.0" prefWidth="390.0" spacing="5.0" xmlns="http://javafx.com/javafx/8"
+<VBox prefHeight="200.0" prefWidth="410.0" spacing="5.0" xmlns="http://javafx.com/javafx/8"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="bg.tusofia.controllers.general.ParentController">
     <padding>
         <Insets left="15.0" top="10.0"/>
