@@ -62,7 +62,7 @@
         <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
                     prefWidth="15.0" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.valignment="CENTER">
             <tooltip>
-                <Tooltip text="%typedef.simplitem"/>
+                <Tooltip text="%typedef.simpleitem"/>
             </tooltip>
             <effect>
                 <ImageInput>

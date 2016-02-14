@@ -4,7 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
-<VBox prefHeight="250.0" prefWidth="380.0" spacing="5.0" xmlns="http://javafx.com/javafx/8"
+<?import javafx.scene.effect.ImageInput?>
+<?import javafx.scene.image.Image?>
+<VBox prefHeight="250.0" prefWidth="404.0" spacing="5.0" xmlns="http://javafx.com/javafx/8"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="bg.tusofia.controllers.general.VersionController">
     <padding>
         <Insets left="10.0" top="10.0"/>
@@ -12,6 +14,7 @@
     <HBox prefWidth="220.0">
         <GridPane vgap="5.0">
             <columnConstraints>
+                <ColumnConstraints minWidth="10.0" prefWidth="25.0"/>
                 <ColumnConstraints prefWidth="150.0"/>
                 <ColumnConstraints prefWidth="190.0"/>
             </columnConstraints>
@@ -23,27 +26,71 @@
             <HBox.margin>
                 <Insets left="10.0" top="10.0"/>
             </HBox.margin>
-            <Text text="* Version timestamp :" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <Text text="* Version timestamp :" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                  GridPane.valignment="TOP">
                 <GridPane.margin>
                     <Insets left="-8.0"/>
                 </GridPane.margin>
             </Text>
-            <Text text="* Version Number :" GridPane.valignment="TOP">
+            <Text text="* Version Number :" GridPane.columnIndex="1" GridPane.valignment="TOP">
                 <GridPane.margin>
                     <Insets left="-8.0"/>
                 </GridPane.margin>
             </Text>
-            <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1"
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2"
                   GridPane.rowIndex="1">
                 <DatePicker fx:id="datePicker" prefWidth="120.0"/>
                 <TextField fx:id="hourField" prefWidth="40.0" promptText="hh"/>
                 <Text text=":"/>
                 <TextField fx:id="minField" prefWidth="42.0" promptText="mm"/>
             </HBox>
-            <Text text="Modification information :" GridPane.rowIndex="2" GridPane.valignment="TOP"/>
-            <TextArea fx:id="modificationInfo" prefHeight="68.0" prefWidth="147.0" wrapText="true" GridPane.columnIndex="1"
-                      GridPane.rowIndex="2"/>
-            <TextField fx:id="versionNumber" GridPane.columnIndex="1"/>
+            <Text text="Modification information :" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                  GridPane.valignment="TOP"/>
+            <TextArea fx:id="modificationInfo" prefHeight="68.0" prefWidth="147.0" wrapText="true"
+                      GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+            <TextField fx:id="versionNumber" GridPane.columnIndex="2"/>
+            <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
+                        prefWidth="15.0" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                        GridPane.valignment="TOP">
+                <tooltip>
+                    <Tooltip text="%version.number"/>
+                </tooltip>
+                <effect>
+                    <ImageInput>
+                        <source>
+                            <Image url="@../../img/info_icon.png"/>
+                        </source>
+                    </ImageInput>
+                </effect>
+            </ScrollPane>
+            <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
+                        prefWidth="15.0" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                        GridPane.valignment="TOP">
+                <tooltip>
+                    <Tooltip text="%version.timestamp"/>
+                </tooltip>
+                <effect>
+                    <ImageInput>
+                        <source>
+                            <Image url="@../../img/info_icon.png"/>
+                        </source>
+                    </ImageInput>
+                </effect>
+            </ScrollPane>
+            <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
+                        prefWidth="15.0" GridPane.columnIndex="0" GridPane.rowIndex="2"
+                        GridPane.valignment="TOP">
+                <tooltip>
+                    <Tooltip text="%version.modification"/>
+                </tooltip>
+                <effect>
+                    <ImageInput>
+                        <source>
+                            <Image url="@../../img/info_icon.png"/>
+                        </source>
+                    </ImageInput>
+                </effect>
+            </ScrollPane>
         </GridPane>
     </HBox>
     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">

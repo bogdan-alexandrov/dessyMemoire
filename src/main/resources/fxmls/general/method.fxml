@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Text?>
-<VBox prefHeight="200.0" prefWidth="390.0" spacing="5.0" xmlns="http://javafx.com/javafx/8"
+
+<?import javafx.scene.effect.ImageInput?>
+<?import javafx.scene.image.Image?>
+<VBox prefHeight="200.0" prefWidth="410.0" spacing="5.0" xmlns="http://javafx.com/javafx/8"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="bg.tusofia.controllers.general.MethodController">
     <padding>
         <Insets left="10.0" top="10.0"/>
     </padding>
-    <GridPane vgap="5.0">
+    <GridPane hgap="5.0" vgap="5.0">
         <columnConstraints>
+            <ColumnConstraints minWidth="10.0" prefWidth="15.0"/>
             <ColumnConstraints prefWidth="70.0"/>
             <ColumnConstraints prefWidth="290.0"/>
         </columnConstraints>
@@ -19,12 +23,11 @@
             <RowConstraints prefHeight="100.0"/>
             <RowConstraints prefHeight="30.0"/>
         </rowConstraints>
-        <Text text="Instrument" GridPane.valignment="TOP"/>
-        <TextField fx:id="instrument" GridPane.columnIndex="1"/>
-        <Text text="Procedures" GridPane.rowIndex="1" GridPane.valignment="TOP"/>
-        <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"
-                   GridPane.rowIndex="1"/>
-        <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2"
+        <Text text="Instrument :" GridPane.columnIndex="1" GridPane.valignment="TOP"/>
+        <TextField fx:id="instrument" GridPane.columnIndex="2"/>
+        <Text text="Procedures :" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP"/>
+        <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+        <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="2"
               GridPane.valignment="CENTER">
             <Text text="Name :"/>
             <TextField fx:id="procTypeName" prefWidth="50.0"/>
@@ -33,7 +36,37 @@
             <Button onAction="#addButtonClicked" text="Add"/>
             <Button onAction="#deleteButtonClicked" text="Delete"/>
         </HBox>
+
+        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
+                    prefWidth="15.0" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                    GridPane.valignment="TOP">
+            <tooltip>
+                <Tooltip text="%method.instrument"/>
+            </tooltip>
+            <effect>
+                <ImageInput>
+                    <source>
+                        <Image url="@../../img/info_icon.png"/>
+                    </source>
+                </ImageInput>
+            </effect>
+        </ScrollPane>
+    <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
+                prefWidth="15.0" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                GridPane.valignment="TOP">
+        <tooltip>
+            <Tooltip text="%method.procedures"/>
+        </tooltip>
+        <effect>
+            <ImageInput>
+                <source>
+                    <Image url="@../../img/info_icon.png"/>
+                </source>
+            </ImageInput>
+        </effect>
+    </ScrollPane>
     </GridPane>
+
     <HBox alignment="CENTER" prefHeight="80.0" spacing="10.0">
         <Button onAction="#cancel" prefWidth="60.0" text="Cancel"/>
         <Button onAction="#save" prefWidth="60.0" text="Save"/>

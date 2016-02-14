@@ -34,29 +34,27 @@
         <Text text="*" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
         <Text text="Name :" GridPane.columnIndex="1"/>
         <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="1">
-            <children>
-                <Text fx:id="type" text="simple">
-                    <HBox.margin>
-                        <Insets right="5.0"/>
-                    </HBox.margin>
-                </Text>
-                <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
-                            prefWidth="15.0">
-                    <tooltip>
-                        <Tooltip text="%item.type"/>
-                    </tooltip>
-                    <effect>
-                        <ImageInput>
-                            <source>
-                                <Image url="@../../img/info_icon.png"/>
-                            </source>
-                        </ImageInput>
-                    </effect>
-                </ScrollPane>
-            </children>
             <opaqueInsets>
                 <Insets right="5.0"/>
             </opaqueInsets>
+            <Text fx:id="type" text="simple">
+                <HBox.margin>
+                    <Insets right="5.0"/>
+                </HBox.margin>
+            </Text>
+            <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
+                        prefWidth="15.0">
+                <tooltip>
+                    <Tooltip text="%item.type"/>
+                </tooltip>
+                <effect>
+                    <ImageInput>
+                        <source>
+                            <Image url="@../../img/info_icon.png"/>
+                        </source>
+                    </ImageInput>
+                </effect>
+            </ScrollPane>
         </HBox>
         <TextField fx:id="name" GridPane.columnIndex="2"/>
         <Text text="Type :" GridPane.columnIndex="1" GridPane.rowIndex="1"/>

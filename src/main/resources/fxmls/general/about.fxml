@@ -2,24 +2,45 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.ImageInput?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.*?>
-<VBox minHeight="500.0" minWidth="310.0" prefHeight="500.0" prefWidth="310.0"
-      spacing="5.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+<VBox minHeight="500.0" minWidth="310.0" prefHeight="500.0" prefWidth="310.0" spacing="5.0"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="bg.tusofia.controllers.general.AboutController">
     <padding>
         <Insets left="10.0" top="10.0"/>
     </padding>
-    <Label text="Domains :">
-        <VBox.margin>
-            <Insets/>
-        </VBox.margin>
-    </Label>
+
+    <HBox alignment="CENTER_LEFT" spacing="5.0">
+        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
+                    GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="0"
+                    GridPane.valignment="CENTER">
+            <tooltip>
+                <Tooltip text="%about.domains"/>
+            </tooltip>
+            <effect>
+                <ImageInput>
+                    <source>
+                        <Image url="@../../img/info_icon.png"/>
+                    </source>
+                </ImageInput>
+            </effect>
+        </ScrollPane>
+
+        <Label text="Domains :">
+            <VBox.margin>
+                <Insets/>
+            </VBox.margin>
+        </Label>
+    </HBox>
     <ScrollPane hbarPolicy="NEVER" maxHeight="137.0" maxWidth="250.0" minHeight="137.0" minWidth="250.0"
                 prefHeight="137.0" prefViewportHeight="41.0" prefWidth="250.0" vbarPolicy="NEVER">
         <VBox.margin>
             <Insets left="30.0" right="20.0"/>
         </VBox.margin>
         <VBox maxHeight="1.7976931348623157E308">
+
             <TableView fx:id="domains" maxHeight="100.0" maxWidth="245.0" minHeight="100.0" minWidth="248.0"
                        prefHeight="100.0" prefWidth="245.0">
             </TableView>
@@ -38,16 +59,48 @@
             </HBox>
         </VBox>
     </ScrollPane>
-    <Label text="Keywords (coma separated) :"/>
-    <TextArea maxHeight="100.0" maxWidth="250.0" minHeight="100.0" minWidth="250.0" prefHeight="100.0"
-              prefWidth="250.0" wrapText="true" fx:id="keywords">
+    <HBox alignment="CENTER_LEFT" spacing="5.0">
+        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
+                    GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="0"
+                    GridPane.valignment="CENTER">
+            <tooltip>
+                <Tooltip text="%about.keywords"/>
+            </tooltip>
+            <effect>
+                <ImageInput>
+                    <source>
+                        <Image url="@../../img/info_icon.png"/>
+                    </source>
+                </ImageInput>
+            </effect>
+        </ScrollPane>
+        <Label text="Keywords (coma separated) :"/>
+    </HBox>
+    <TextArea fx:id="keywords" maxHeight="100.0" maxWidth="250.0" minHeight="100.0" minWidth="250.0" prefHeight="100.0"
+              prefWidth="250.0" wrapText="true">
         <VBox.margin>
             <Insets left="30.0"/>
         </VBox.margin>
     </TextArea>
-    <Label text="Annotation :"/>
-    <TextArea maxHeight="100.0" maxWidth="250.0" minHeight="100.0" minWidth="250.0" prefHeight="100.0"
-              prefWidth="250.0" wrapText="true" fx:id="annotation">
+    <HBox alignment="CENTER_LEFT" spacing="5.0">
+        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
+                    GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="0"
+                    GridPane.valignment="CENTER">
+            <tooltip>
+                <Tooltip text="%about.annotations"/>
+            </tooltip>
+            <effect>
+                <ImageInput>
+                    <source>
+                        <Image url="@../../img/info_icon.png"/>
+                    </source>
+                </ImageInput>
+            </effect>
+        </ScrollPane>
+        <Label text="Annotation :"/>
+    </HBox>
+    <TextArea fx:id="annotation" maxHeight="100.0" maxWidth="250.0" minHeight="100.0" minWidth="250.0"
+              prefHeight="100.0" prefWidth="250.0" wrapText="true">
         <VBox.margin>
             <Insets left="30.0"/>
         </VBox.margin>

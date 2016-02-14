@@ -43,8 +43,10 @@
                 </ImageInput>
             </effect>
         </ScrollPane>
-        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0" prefWidth="15.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-            <tooltip>
+        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
+                    GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1"
+                    GridPane.valignment="CENTER">
+        <tooltip>
                 <Tooltip text="%structure.regexp" />
             </tooltip>
             <effect>
