@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="dessymemoire" default="all"
+         xmlns:fx="javafx:com.sun.javafx.tools.ant">
+
+
+    <property file="dessymemoire.properties"/>
+    <!-- Uncomment the following property if no tests compilation is needed -->
+    <!--
+    <property name="skip.tests" value="true"/>
+     -->
+
+    <!-- Compiler options -->
+
+    <property name="compiler.debug" value="on"/>
+    <property name="compiler.generate.no.warnings" value="off"/>
+    <property name="compiler.args" value=""/>
+    <property name="compiler.max.memory" value="700m"/>
+    <patternset id="ignored.files">
+        <exclude name="**/*.hprof/**"/>
+        <exclude name="**/*.pyc/**"/>
+        <exclude name="**/*.pyo/**"/>
+        <exclude name="**/*.rbc/**"/>
+        <exclude name="**/*~/**"/>
+        <exclude name="**/.DS_Store/**"/>
+        <exclude name="**/.bundle/**"/>
+        <exclude name="**/.git/**"/>
+        <exclude name="**/.hg/**"/>
+        <exclude name="**/.svn/**"/>
+        <exclude name="**/.tox/**"/>
+        <exclude name="**/CVS/**"/>
+        <exclude name="**/RCS/**"/>
+        <exclude name="**/SCCS/**"/>
+        <exclude name="**/__pycache__/**"/>
+        <exclude name="**/_svn/**"/>
+        <exclude name="**/rcs/**"/>
+        <exclude name="**/vssver.scc/**"/>
+        <exclude name="**/vssver2.scc/**"/>
+    </patternset>
+    <patternset id="library.patterns">
+        <include name="*.war"/>
+        <include name="*.ear"/>
+        <include name="*.apk"/>
+        <include name="*.zip"/>
+        <include name="*.swc"/>
+        <include name="*.ane"/>
+        <include name="*.egg"/>
+        <include name="*.jar"/>
+    </patternset>
+    <patternset id="compiler.resources">
+        <exclude name="**/?*.java"/>
+        <exclude name="**/?*.form"/>
+        <exclude name="**/?*.class"/>
+        <exclude name="**/?*.groovy"/>
+        <exclude name="**/?*.scala"/>
+        <exclude name="**/?*.flex"/>
+        <exclude name="**/?*.kt"/>
+        <exclude name="**/?*.clj"/>
+        <exclude name="**/?*.aj"/>
+    </patternset>
+
+    <!-- JDK definitions -->
+
+    <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+    <path id="jdk.classpath.1.8">
+        <fileset dir="${jdk.home.1.8}">
+            <include name="jre/lib/charsets.jar"/>
+            <include name="jre/lib/deploy.jar"/>
+            <include name="jre/lib/javaws.jar"/>
+            <include name="jre/lib/jce.jar"/>
+            <include name="jre/lib/jfr.jar"/>
+            <include name="jre/lib/jfxswt.jar"/>
+            <include name="jre/lib/jsse.jar"/>
+            <include name="jre/lib/management-agent.jar"/>
+            <include name="jre/lib/plugin.jar"/>
+            <include name="jre/lib/resources.jar"/>
+            <include name="jre/lib/rt.jar"/>
+            <include name="jre/lib/ext/access-bridge-64.jar"/>
+            <include name="jre/lib/ext/cldrdata.jar"/>
+            <include name="jre/lib/ext/dnsns.jar"/>
+            <include name="jre/lib/ext/jaccess.jar"/>
+            <include name="jre/lib/ext/jfxrt.jar"/>
+            <include name="jre/lib/ext/localedata.jar"/>
+            <include name="jre/lib/ext/nashorn.jar"/>
+            <include name="jre/lib/ext/sunec.jar"/>
+            <include name="jre/lib/ext/sunjce_provider.jar"/>
+            <include name="jre/lib/ext/sunmscapi.jar"/>
+            <include name="jre/lib/ext/sunpkcs11.jar"/>
+            <include name="jre/lib/ext/zipfs.jar"/>
+        </fileset>
+    </path>
+
+    <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+    <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+    <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+
+
+    <!-- Application Server Libraries -->
+    <!-- Register Custom Compiler Taskdefs -->
+    <property name="javac2.home" value="${idea.home}/lib"/>
+    <path id="javac2.classpath">
+        <pathelement location="${javac2.home}/javac2.jar"/>
+        <pathelement location="${javac2.home}/jdom.jar"/>
+        <pathelement location="${javac2.home}/asm-all.jar"/>
+        <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+    </path>
+    <target name="register.custom.compilers">
+        <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+        <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions"
+                 classpathref="javac2.classpath"/>
+    </target>
+
+    <!-- Module dessyMemoire -->
+
+    <dirname property="module.dessymemoire.basedir" file="${ant.file}"/>
+
+    <property name="module.jdk.home.dessymemoire" value="${jdk.home.1.8}"/>
+    <property name="module.jdk.bin.dessymemoire" value="${jdk.bin.1.8}"/>
+    <property name="module.jdk.classpath.dessymemoire" value="jdk.classpath.1.8"/>
+
+    <property name="compiler.args.dessymemoire" value="-encoding windows-1252 -source 8 -target 1.8 ${compiler.args}"/>
+
+    <property name="dessymemoire.output.dir" value="${module.dessymemoire.basedir}/target/classes"/>
+    <property name="dessymemoire.testoutput.dir" value="${module.dessymemoire.basedir}/target/test-classes"/>
+
+    <path id="dessymemoire.module.bootclasspath">
+        <!-- Paths to be included in compilation bootclasspath -->
+    </path>
+
+    <path id="dessymemoire.module.production.classpath">
+        <path refid="${module.jdk.classpath.dessymemoire}"/>
+    </path>
+
+    <path id="dessymemoire.runtime.production.module.classpath">
+        <pathelement location="${dessymemoire.output.dir}"/>
+    </path>
+
+    <path id="dessymemoire.module.classpath">
+        <path refid="${module.jdk.classpath.dessymemoire}"/>
+        <pathelement location="${dessymemoire.output.dir}"/>
+    </path>
+
+    <path id="dessymemoire.runtime.module.classpath">
+        <pathelement location="${dessymemoire.testoutput.dir}"/>
+        <pathelement location="${dessymemoire.output.dir}"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.dessymemoire">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.dessymemoire">
+        <patternset refid="excluded.from.module.dessymemoire"/>
+    </patternset>
+
+    <path id="dessymemoire.module.sourcepath">
+        <dirset dir="${module.dessymemoire.basedir}">
+            <include name="src/main/java"/>
+            <include name="src/main/resources"/>
+        </dirset>
+    </path>
+
+
+    <target name="compile.module.dessymemoire"
+            depends="compile.module.dessymemoire.production,compile.module.dessymemoire.tests"
+            description="Compile module dessyMemoire"/>
+
+    <target name="compile.module.dessymemoire.production" depends="register.custom.compilers"
+            description="Compile module dessyMemoire; production classes">
+        <mkdir dir="${dessymemoire.output.dir}"/>
+        <javac2 destdir="${dessymemoire.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}"
+                memorymaximumsize="${compiler.max.memory}" fork="true"
+                executable="${module.jdk.bin.dessymemoire}/javac">
+            <compilerarg line="${compiler.args.dessymemoire}"/>
+            <bootclasspath refid="dessymemoire.module.bootclasspath"/>
+            <classpath refid="dessymemoire.module.production.classpath"/>
+            <src refid="dessymemoire.module.sourcepath"/>
+            <patternset refid="excluded.from.compilation.dessymemoire"/>
+        </javac2>
+
+        <copy todir="${dessymemoire.output.dir}">
+            <fileset dir="${module.dessymemoire.basedir}/src/main/java">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+            <fileset dir="${module.dessymemoire.basedir}/src/main/resources">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile.module.dessymemoire.tests"
+            depends="register.custom.compilers,compile.module.dessymemoire.production"
+            description="compile module dessyMemoire; test classes" unless="skip.tests"/>
+
+    <target name="clean.module.dessymemoire" description="cleanup module">
+        <delete dir="${dessymemoire.output.dir}"/>
+        <delete dir="${dessymemoire.testoutput.dir}"/>
+    </target>
+
+    <target name="init" description="Build initialization">
+        <!-- Perform any build initialization in this target -->
+    </target>
+
+    <!--<target name="clean" depends="clean.module.dessymemoire" description="cleanup all"/>-->
+
+    <target name="build.modules" depends="init, clean, compile.module.dessymemoire" description="build all modules"/>
+
+    <target name="all" depends="build.modules" description="build all"/>
+
+
+    <!-- STARST HERE -->
+    <property name="JAVA_HOME" value="C:\\Program Files\\Java\\jdk1.8.0_71"/>
+    <property name="build.src.dir" value="src"/>
+    <property name="build.classes.dir" value="target/classes"/>
+    <property name="build.dist.dir" value="target/res"/>
+    <property name="build.resources.dir" value="src/main/resources"/>
+
+    <path id="jdk.classpath.1.8_(1)">
+        <fileset dir="${JAVA_HOME}">
+            <include name="jre/lib/charsets.jar"/>
+            <include name="jre/lib/deploy.jar"/>
+            <include name="jre/lib/javaws.jar"/>
+            <include name="jre/lib/jce.jar"/>
+            <include name="jre/lib/jfr.jar"/>
+            <include name="jre/lib/jfxswt.jar"/>
+            <include name="jre/lib/jsse.jar"/>
+            <include name="jre/lib/management-agent.jar"/>
+            <include name="jre/lib/plugin.jar"/>
+            <include name="jre/lib/resources.jar"/>
+            <include name="jre/lib/rt.jar"/>
+            <include name="jre/lib/ext/access-bridge-64.jar"/>
+            <include name="jre/lib/ext/cldrdata.jar"/>
+            <include name="jre/lib/ext/dnsns.jar"/>
+            <include name="jre/lib/ext/jaccess.jar"/>
+            <include name="jre/lib/ext/jfxrt.jar"/>
+            <include name="jre/lib/ext/localedata.jar"/>
+            <include name="jre/lib/ext/nashorn.jar"/>
+            <include name="jre/lib/ext/sunec.jar"/>
+            <include name="jre/lib/ext/sunjce_provider.jar"/>
+            <include name="jre/lib/ext/sunmscapi.jar"/>
+            <include name="jre/lib/ext/sunpkcs11.jar"/>
+            <include name="jre/lib/ext/zipfs.jar"/>
+        </fileset>
+    </path>
+
+    <target name="default" depends="compile">
+
+        <taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
+                 uri="javafx:com.sun.javafx.tools.ant"
+                 classpath="${JAVA_HOME}/lib/ant-javafx.jar"/>
+
+        <fx:application id="XmlWizard-1-0"
+                        name="XmlWizardApp"
+                        mainClass="bg.tusofia.WizardApplication"/>
+
+        <fx:resources id="appRes">
+            <fx:fileset dir="${build.dist.dir}" includes="XmlWizard.jar"/>
+        </fx:resources>
+
+        <fx:jar destfile="${build.dist.dir}/XmlWizard.jar">
+            <fx:application refid="XmlWizard-1-0"/>
+            <fx:resources refid="appRes"/>
+            <fileset dir="${build.classes.dir}"/>
+            <fileset dir="${build.resources.dir}"/>
+        </fx:jar>
+
+        <fx:deploy width="300" height="250"
+                   outdir="target" embedJNLP="true"
+                   outfile="xmlwizard"
+                   nativeBundles="all">
+
+            <fx:application refId="XmlWizard-1-0"/>
+
+            <fx:resources refid="appRes"/>
+
+            <fx:info title="Xml Wizard Application"
+                     vendor="TU-Sofia"/>
+
+        </fx:deploy>
+
+    </target>
+
+    <target name="clean">
+        <mkdir dir="${build.classes.dir}"/>
+        <mkdir dir="${build.dist.dir}"/>
+
+        <delete>
+            <fileset dir="${build.classes.dir}" includes="**/*"/>
+            <fileset dir="${build.dist.dir}" includes="**/*"/>
+        </delete>
+
+    </target>
+
+    <target name="compile" depends="clean">
+
+        <javac includeantruntime="false"
+               srcdir="${build.src.dir}"
+               destdir="${build.classes.dir}"
+               fork="yes"
+               executable="${JAVA_HOME}/bin/javac"
+               source="1.8"
+               debug="on">
+        </javac>
+    </target>
+
+
+</project>
