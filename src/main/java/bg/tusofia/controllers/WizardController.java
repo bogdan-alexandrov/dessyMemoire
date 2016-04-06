@@ -222,27 +222,27 @@ public class WizardController extends AbstractController {
         if (layout.getByteSize() != null) {
             byteSize.setText(layout.getByteSize().toString());
         } else {
-            setId.setText("");
+            byteSize.setText("");
         }
         if (layout.getFloat32Exponent() != null) {
             float32Exponent.setText(layout.getFloat32Exponent().toString());
         } else {
-            setId.setText("");
+            float32Exponent.setText("");
         }
         if (layout.getFloat64Exponent() != null) {
             float64Exponent.setText(layout.getFloat64Exponent().toString());
         } else {
-            setId.setText("");
+            float64Exponent.setText("");
         }
         if (layout.getFloat32Mantissa() != null) {
             float32Mantissa.setText(layout.getFloat32Mantissa().toString());
         } else {
-            setId.setText("");
+            float32Mantissa.setText("");
         }
         if (layout.getFloat64Mantissa() != null) {
             float64Mantissa.setText(layout.getFloat64Mantissa().toString());
         } else {
-            setId.setText("");
+            float64Mantissa.setText("");
         }
 
         if (layout.getCoding() != null) {
@@ -433,6 +433,13 @@ public class WizardController extends AbstractController {
         //don't need it
     }
 
+    private General updateDataGeneral() {
+        General general = ((Dataset) getData()).getGeneral();
+        general.setSetID(setId.getText());
+
+        return general;
+    }
+
     private Layout updateDataLayout() {
         Layout layout = ((Dataset) getData()).getLayout();
         layout.setCoding(codingChoiceBox.getValue());
@@ -550,22 +557,27 @@ public class WizardController extends AbstractController {
     }
 
     public void aboutButtons(String stageName, General.About data) {
+        updateDataGeneral();
         addModifyCommonButtons(stageName, data, "/fxmls/general/about.fxml");
     }
 
     public void sourceButtons(String stageName, General.Source data) {
+        updateDataGeneral();
         addModifyCommonButtons(stageName, data, "/fxmls/general/source.fxml");
     }
 
     public void versionButtons(String stageName, General.Version data) {
+        updateDataGeneral();
         addModifyCommonButtons(stageName, data, "/fxmls/general/version.fxml");
     }
 
     public void accessRightsButtons(String stageName, General.AccessRights data) {
+        updateDataGeneral();
         addModifyCommonButtons(stageName, data, "/fxmls/general/accessRights.fxml");
     }
 
     public void contactButtons(String stageName, General.Contact data) {
+        updateDataGeneral();
         addModifyCommonButtons(stageName, data, "/fxmls/general/contact.fxml");
     }
 
