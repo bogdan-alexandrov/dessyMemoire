@@ -7,7 +7,7 @@
 <VBox prefHeight="200.0" prefWidth="450.0" spacing="5.0" xmlns="http://javafx.com/javafx/8"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="bg.tusofia.controllers.general.PersonalDataController">
     <padding>
-        <Insets left="15.0" right="20.0" top="10.0"/>
+        <Insets left="25.0" top="25.0"/>
     </padding>
     <HBox prefHeight="0.0" spacing="5.0">
         <Text text="*First Name"/>
@@ -38,8 +38,11 @@
             </HBox>
         </VBox>
     </HBox>
-    <HBox alignment="CENTER" prefHeight="80.0" spacing="10.0">
+    <HBox prefHeight="80.0" spacing="10.0">
         <Button onAction="#cancel" prefWidth="60.0" text="Cancel"/>
         <Button onAction="#save" prefWidth="60.0" text="Save"/>
+        <padding>
+            <Insets left="150.0" top="30.0"/>
+        </padding>
     </HBox>
 </VBox>

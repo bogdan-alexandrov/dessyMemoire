@@ -4,13 +4,16 @@ import bg.tusofia.models.PersonalData;
 import bg.tusofia.tools.DeepCopy;
 import bg.tusofia.tools.PromBox;
 import bg.tusofia.tools.WorkingFile;
+import com.sun.javafx.scene.control.behavior.TabPaneBehavior;
+import com.sun.javafx.scene.control.skin.TabPaneSkin;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.Node;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -35,8 +38,10 @@ public abstract class AbstractController implements Initializable {
 
     private AbstractController mainController;
     private Stage stage;
+    private Tab currentTab;
     private Serializable data;
     private Map<AdditionalInfoTypes, List<PersonalData>> additionalData;
+    protected TabPane tabPane;
 
 
     private AdditionalInfoTypes additionalInfoType;
@@ -73,7 +78,7 @@ public abstract class AbstractController implements Initializable {
     public void save() {
         if (validate()) {
             updateParent();
-            getStage().close();
+            close();
         } else {
             PromBox.alert("All required fields are marked with star. " +
                     "Validation is activated to the export in xml file. " +
@@ -81,8 +86,15 @@ public abstract class AbstractController implements Initializable {
         }
     }
 
+    public void close() {
+        cancel();
+    }
+
     public void cancel() {
-        getStage().close();
+        TabPaneBehavior behavior = ((TabPaneSkin) getTabPane().getSkin()).getBehavior();
+        if(behavior.canCloseTab(getCurrentTab())) {
+            behavior.closeTab(getCurrentTab());
+        }
     }
 
     public Serializable getData() {
@@ -91,6 +103,14 @@ public abstract class AbstractController implements Initializable {
 
     public void setData(Serializable data) {
         this.data = data;
+    }
+
+    public Tab getCurrentTab() {
+        return currentTab;
+    }
+
+    public void setCurrentTab(Tab currentTab) {
+        this.currentTab = currentTab;
     }
 
     public void addModifyCommonButtons(String stageName, Serializable data, String fxmlPath) {
@@ -102,20 +122,23 @@ public abstract class AbstractController implements Initializable {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath),
                     ResourceBundle.getBundle("tooltips"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setTitle(stageName);
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL);
+            Node root = fxmlLoader.load();
+
+            Tab tab = new Tab();
+            tab.setText(stageName);
+            tab.setContent(root);
+
+            SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+            tabPane.getTabs().add(tab);
+            selectionModel.select(tab);
 
             AbstractController controller = fxmlLoader.getController();
+            controller.setTabPane(this.getTabPane());
             controller.setMainController(this);
-            controller.setStage(stage);
             controller.setData((Serializable) DeepCopy.copy(data));
             controller.setAdditionalInfoType(additionalInfoType);
+            controller.setCurrentTab(tab);
             controller.initialize();
-
-            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -153,5 +176,13 @@ public abstract class AbstractController implements Initializable {
 
     public void setAdditionalInfoType(AdditionalInfoTypes additionalInfoType) {
         this.additionalInfoType = additionalInfoType;
+    }
+
+    public TabPane getTabPane() {
+        return tabPane;
+    }
+
+    public void setTabPane(TabPane tabPane) {
+        this.tabPane = tabPane;
     }
 }

@@ -1,5 +1,6 @@
 package bg.tusofia.controllers;
 
+import bg.tusofia.controllers.tools.ImageButton;
 import bg.tusofia.models.*;
 import bg.tusofia.tools.FileChooserHelper;
 import bg.tusofia.tools.PromBox;
@@ -18,8 +19,7 @@ import java.util.ResourceBundle;
 
 public class WizardController extends AbstractController {
 
-    public Accordion accordion;
-    public MenuItem meSave;
+    public TabPane tabPane ;
 
     public TextField setId;
     public Button buttonAddAbout;
@@ -47,8 +47,7 @@ public class WizardController extends AbstractController {
     public ChoiceBox<String> byteOrderChoiceBox;
     public VBox clustersVBox;
     public VBox typedefsBox;
-    public TitledPane generalPane;
-    public TitledPane layoutPane;
+    public HBox icons;
 
     private Dataset dataset;
     private Typedef typedefToBeModified;
@@ -56,7 +55,22 @@ public class WizardController extends AbstractController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        accordion.setExpandedPane(generalPane);
+        setTabPane(this.tabPane);
+
+        ImageButton buttonNew = new ImageButton("/img/small_icons/1461257965_document-new.png");
+        buttonNew.setTooltip(new Tooltip("New file"));
+        buttonNew.setOnAction(event1 -> newFile());
+        ImageButton buttonOpen = new ImageButton("/img/small_icons/1461257793_folder_16.png");
+        buttonOpen.setTooltip(new Tooltip("Open file"));
+        buttonOpen.setOnAction(event1 -> openFile());
+        ImageButton buttonSave = new ImageButton("/img/small_icons/1461258702_save_as-2.png");
+        buttonSave.setTooltip(new Tooltip("Save file"));
+        buttonSave.setOnAction(event1 -> save());
+        ImageButton buttonSaveAs = new ImageButton("/img/small_icons/1461258690_Save-as.png");
+        buttonSaveAs.setTooltip(new Tooltip("Save file as"));
+        buttonSaveAs.setOnAction(event1 -> saveAs());
+
+        icons.getChildren().addAll(buttonNew, buttonOpen, buttonSave, buttonSaveAs);
 
         /////////////general
         setId.textProperty().addListener(
@@ -315,7 +329,7 @@ public class WizardController extends AbstractController {
         //LAYOUT ENDs here
 
         ///////////---Menu Items---///////////
-        meSave.setDisable(!fileState);
+//todo        meSave.setDisable(!fileState);
 
         ///////////---Window---///////////
         getStage().setOnCloseRequest(event -> {

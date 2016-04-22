@@ -9,7 +9,7 @@
 <VBox prefHeight="250.0" prefWidth="404.0" spacing="5.0" xmlns="http://javafx.com/javafx/8"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="bg.tusofia.controllers.general.VersionController">
     <padding>
-        <Insets left="10.0" top="10.0"/>
+        <Insets left="25.0" top="25.0"/>
     </padding>
     <HBox prefWidth="220.0">
         <GridPane vgap="5.0">
@@ -93,8 +93,11 @@
             </ScrollPane>
         </GridPane>
     </HBox>
-    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+    <HBox prefHeight="80.0" spacing="10.0">
         <Button onAction="#cancel" prefWidth="60.0" text="Cancel"/>
         <Button onAction="#save" prefWidth="60.0" text="Save"/>
+        <padding>
+            <Insets left="150.0" top="30.0"/>
+        </padding>
     </HBox>
 </VBox>

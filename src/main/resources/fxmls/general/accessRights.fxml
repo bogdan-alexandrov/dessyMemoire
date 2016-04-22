@@ -1,132 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Text?>
-
 <?import javafx.scene.effect.ImageInput?>
 <?import javafx.scene.image.Image?>
-<VBox prefHeight="550.0" prefWidth="400.0" spacing="5.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bg.tusofia.controllers.general.AccessRightsController">
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<VBox prefHeight="550.0" prefWidth="400.0" spacing="5.0" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="bg.tusofia.controllers.general.AccessRightsController">
     <padding>
-        <Insets left="10.0" top="10.0" />
+        <Insets left="25.0" top="25.0"/>
     </padding>
-   <children>
-       <HBox prefWidth="220.0">
-          <children>
-              <GridPane vgap="5.0">
-                  <columnConstraints>
-                  <ColumnConstraints minWidth="25.0" prefWidth="25.0" />
-                      <ColumnConstraints prefWidth="120.0" />
-                      <ColumnConstraints prefWidth="200.0" />
-                  </columnConstraints>
-                  <rowConstraints>
-                      <RowConstraints prefHeight="150.0" />
-                      <RowConstraints minHeight="10.0" prefHeight="150.0" />
-                      <RowConstraints minHeight="10.0" prefHeight="150.0" />
-                  </rowConstraints>
-                  <HBox.margin>
-                      <Insets left="10.0" top="10.0" />
-                  </HBox.margin>
-                 <children>
-                     <Text text="* Ownership :" GridPane.columnIndex="1" GridPane.valignment="TOP">
-                         <GridPane.margin>
-                             <Insets left="-8.0" />
-                         </GridPane.margin>
-                     </Text>
-                     <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2">
-                        <children>
-                            <TableView fx:id="table" prefHeight="400.0" prefWidth="200.0" />
-                            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                               <children>
-                                   <Button onAction="#addOwnership" text="Add" />
-                                   <Button fx:id="modifyOwnershipButton" onAction="#modifyOwnership" text="Modify" />
-                                   <Button fx:id="deleteOwnershipButton" onAction="#deleteOwnership" text="Delete" />
-                               </children>
-                            </HBox>
-                        </children>
-                     </VBox>
-                     <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                        <children>
-                            <TableView fx:id="table1" prefHeight="400.0" prefWidth="200.0" />
-                            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                               <children>
-                                   <Button onAction="#addDistribution" text="Add" />
-                                   <Button fx:id="modifyDistributionButton" onAction="#modifyDistribution" text="Modify" />
-                                   <Button fx:id="deleteDistributionButton" onAction="#deleteDistribution" text="Delete" />
-                               </children>
-                            </HBox>
-                        </children>
-                     </VBox>
-                     <Text text="Read rights :" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-                     <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                        <children>
-                            <TableView fx:id="table2" prefHeight="400.0" prefWidth="200.0" />
-                            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                               <children>
-                                   <Button onAction="#addReadRights" text="Add" />
-                                   <Button fx:id="modifyReadButton" onAction="#modifyReadRights" text="Modify" />
-                                   <Button fx:id="deleteReadButton" onAction="#deleteReadRights" text="Delete" />
-                               </children>
-                            </HBox>
-                        </children>
-                     </VBox>
-                     <Text text="Distribution rights :" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                 </children>
-                  <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
-                              prefWidth="15.0" GridPane.columnIndex="0" GridPane.rowIndex="0"
-                              GridPane.valignment="TOP">
-                      <tooltip>
-                          <Tooltip text="%access.ownership"/>
-                      </tooltip>
-                      <effect>
-                          <ImageInput>
-                              <source>
-                                  <Image url="@../../img/info_icon.png"/>
-                              </source>
-                          </ImageInput>
-                      </effect>
-                  </ScrollPane>
-                  <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
-                              prefWidth="15.0" GridPane.columnIndex="0" GridPane.rowIndex="1"
-                              GridPane.valignment="TOP">
-                      <tooltip>
-                          <Tooltip text="%access.distribution"/>
-                      </tooltip>
-                      <effect>
-                          <ImageInput>
-                              <source>
-                                  <Image url="@../../img/info_icon.png"/>
-                              </source>
-                          </ImageInput>
-                      </effect>
-                  </ScrollPane>
-                  <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
-                              prefWidth="15.0" GridPane.columnIndex="0" GridPane.rowIndex="2"
-                              GridPane.valignment="TOP">
-                      <tooltip>
-                          <Tooltip text="%access.readRights"/>
-                      </tooltip>
-                      <effect>
-                          <ImageInput>
-                              <source>
-                                  <Image url="@../../img/info_icon.png"/>
-                              </source>
-                          </ImageInput>
-                      </effect>
-                  </ScrollPane>
+    <HBox prefWidth="220.0">
+        <GridPane vgap="5.0">
+            <columnConstraints>
+                <ColumnConstraints minWidth="25.0" prefWidth="25.0"/>
+                <ColumnConstraints prefWidth="120.0"/>
+                <ColumnConstraints prefWidth="200.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="150.0"/>
+                <RowConstraints minHeight="10.0" prefHeight="150.0"/>
+                <RowConstraints minHeight="10.0" prefHeight="150.0"/>
+            </rowConstraints>
+            <HBox.margin>
+                <Insets left="10.0" top="10.0"/>
+            </HBox.margin>
+            <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
+                        prefWidth="15.0" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                        GridPane.valignment="TOP">
+                <tooltip>
+                    <Tooltip text="%access.ownership"/>
+                </tooltip>
+                <effect>
+                    <ImageInput>
+                        <source>
+                            <Image url="@../../img/info_icon.png"/>
+                        </source>
+                    </ImageInput>
+                </effect>
+            </ScrollPane>
+            <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
+                        prefWidth="15.0" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                        GridPane.valignment="TOP">
+                <tooltip>
+                    <Tooltip text="%access.distribution"/>
+                </tooltip>
+                <effect>
+                    <ImageInput>
+                        <source>
+                            <Image url="@../../img/info_icon.png"/>
+                        </source>
+                    </ImageInput>
+                </effect>
+            </ScrollPane>
+            <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
+                        prefWidth="15.0" GridPane.columnIndex="0" GridPane.rowIndex="2"
+                        GridPane.valignment="TOP">
+                <tooltip>
+                    <Tooltip text="%access.readRights"/>
+                </tooltip>
+                <effect>
+                    <ImageInput>
+                        <source>
+                            <Image url="@../../img/info_icon.png"/>
+                        </source>
+                    </ImageInput>
+                </effect>
+            </ScrollPane>
 
-              </GridPane>
-          </children>
-       </HBox>
-       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-          <children>
-              <Button onAction="#cancel" prefWidth="60.0" text="Cancel" />
-              <Button onAction="#save" prefWidth="60.0" text="Save" />
-          </children>
-       </HBox>
-   </children>
+            <Text text="* Ownership :" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                <GridPane.margin>
+                    <Insets left="-8.0"/>
+                </GridPane.margin>
+            </Text>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2">
+                <TableView fx:id="table" prefHeight="400.0" prefWidth="200.0"/>
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                    <Button onAction="#addOwnership" text="Add"/>
+                    <Button fx:id="modifyOwnershipButton" onAction="#modifyOwnership" text="Modify"/>
+                    <Button fx:id="deleteOwnershipButton" onAction="#deleteOwnership" text="Delete"/>
+                </HBox>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <TableView fx:id="table1" prefHeight="400.0" prefWidth="200.0"/>
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                    <Button onAction="#addDistribution" text="Add"/>
+                    <Button fx:id="modifyDistributionButton" onAction="#modifyDistribution" text="Modify"/>
+                    <Button fx:id="deleteDistributionButton" onAction="#deleteDistribution" text="Delete"/>
+                </HBox>
+            </VBox>
+            <Text text="Read rights :" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP"/>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                <TableView fx:id="table2" prefHeight="400.0" prefWidth="200.0"/>
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                    <Button onAction="#addReadRights" text="Add"/>
+                    <Button fx:id="modifyReadButton" onAction="#modifyReadRights" text="Modify"/>
+                    <Button fx:id="deleteReadButton" onAction="#deleteReadRights" text="Delete"/>
+                </HBox>
+            </VBox>
+            <Text text="Distribution rights :" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                  GridPane.valignment="TOP"/>
+        </GridPane>
+    </HBox>
+    <HBox prefHeight="80.0" spacing="10.0">
+        <Button onAction="#cancel" prefWidth="60.0" text="Cancel"/>
+        <Button onAction="#save" prefWidth="60.0" text="Save"/>
+        <padding>
+            <Insets left="150.0" top="30.0"/>
+        </padding>
+    </HBox>
 </VBox>

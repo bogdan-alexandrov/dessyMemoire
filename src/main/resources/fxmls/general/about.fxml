@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.ImageInput?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
 <VBox minHeight="500.0" minWidth="310.0" prefHeight="500.0" prefWidth="310.0" spacing="5.0"
-      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="bg.tusofia.controllers.general.AboutController">
     <padding>
-        <Insets left="10.0" top="10.0"/>
+        <Insets left="25.0" top="25.0"/>
     </padding>
 
     <HBox alignment="CENTER_LEFT" spacing="5.0">
-        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
-                    GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="0"
-                    GridPane.valignment="CENTER">
+        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
+                    prefWidth="15.0">
             <tooltip>
                 <Tooltip text="%about.domains"/>
             </tooltip>
@@ -60,9 +67,8 @@
         </VBox>
     </ScrollPane>
     <HBox alignment="CENTER_LEFT" spacing="5.0">
-        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
-                    GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="0"
-                    GridPane.valignment="CENTER">
+        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
+                    prefWidth="15.0">
             <tooltip>
                 <Tooltip text="%about.keywords"/>
             </tooltip>
@@ -83,9 +89,8 @@
         </VBox.margin>
     </TextArea>
     <HBox alignment="CENTER_LEFT" spacing="5.0">
-        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0" prefWidth="15.0"
-                    GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="0"
-                    GridPane.valignment="CENTER">
+        <ScrollPane maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" prefHeight="15.0"
+                    prefWidth="15.0">
             <tooltip>
                 <Tooltip text="%about.annotations"/>
             </tooltip>
@@ -105,19 +110,11 @@
             <Insets left="30.0"/>
         </VBox.margin>
     </TextArea>
-    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-        <opaqueInsets>
-            <Insets right="10.0"/>
-        </opaqueInsets>
-        <Button mnemonicParsing="false" onAction="#cancel" prefHeight="0.0" prefWidth="60.0" text="Cancel">
-            <HBox.margin>
-                <Insets left="10.0" right="10.0"/>
-            </HBox.margin>
-        </Button>
-        <Button mnemonicParsing="false" onAction="#save" prefWidth="60.0" text="Save">
-            <HBox.margin>
-                <Insets left="10.0" right="10.0"/>
-            </HBox.margin>
-        </Button>
+    <HBox prefHeight="80.0" spacing="10.0">
+        <Button onAction="#cancel" prefWidth="60.0" text="Cancel"/>
+        <Button onAction="#save" prefWidth="60.0" text="Save"/>
+        <padding>
+            <Insets left="75.0" top="30.0"/>
+        </padding>
     </HBox>
 </VBox>
