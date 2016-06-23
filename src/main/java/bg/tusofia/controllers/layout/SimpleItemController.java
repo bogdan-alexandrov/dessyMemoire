@@ -96,9 +96,13 @@ public class SimpleItemController extends AbstractController {
 
     @Override
     public void updateParent() {
-        ItemController itemController = (ItemController) getMainController();
-        ((Item) itemController.getData()).setSimpleItem(updateData());
-        itemController.initialize();
+        AbstractController controller = getMainController();
+        if(controller instanceof ItemController){
+            ((Item) controller.getData()).setSimpleItem(updateData());
+        } else if (controller instanceof TypedefController){
+            ((Typedef) controller.getData()).setSimpleItem(updateData());
+        }
+        controller.initialize();
     }
 
     private SimpleItem updateData() {

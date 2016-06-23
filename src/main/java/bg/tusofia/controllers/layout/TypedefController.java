@@ -35,8 +35,13 @@ public class TypedefController extends AbstractController {
                 preview.setText("Literal : " + CommonTools.abbreviate(data.getLiteral(), 10));
                 previewEdit.setOnAction(event -> editLiteral());
                 previewDelete.setOnAction(event -> deleteLiteral());
-            } else if (data.getSimpleItem() != null && !data.getSimpleItem().getTypeRef().isEmpty()) {
-                preview.setText("SimpleItem : " + CommonTools.abbreviate(data.getSimpleItem().getTypeRef(), 10));
+            } else if (data.getSimpleItem() != null) {
+                SimpleItem simpleItem = data.getSimpleItem();
+                if (simpleItem.getTypeRef() != null && !simpleItem.getTypeRef().isEmpty()) {
+                    preview.setText("SimpleItem : " + CommonTools.abbreviate(simpleItem.getTypeRef(), 10));
+                } else if (simpleItem.getType() != null) {
+                    preview.setText("SimpleItem : " + CommonTools.abbreviate(simpleItem.getType().value(), 10));
+                }
                 previewEdit.setOnAction(event -> editSimpleItem());
                 previewDelete.setOnAction(event -> deleteSimpleItem());
             } else if (data.getStructure() != null && !data.getStructure().getPreview().isEmpty()) {
@@ -58,6 +63,8 @@ public class TypedefController extends AbstractController {
     public void updateParent() {
         AbstractController controller = getMainController();
         if (controller instanceof WizardController) {
+            Typedef typedefToBeDeleted = ((WizardController) controller).getTypedefToBeModified();
+            ((Dataset) controller.getData()).getLayout().getTypedef().remove(typedefToBeDeleted);
             ((Dataset) controller.getData()).getLayout().getTypedef().add(updateData());
         }
         if (controller instanceof SimpleItemController) {
@@ -146,7 +153,7 @@ public class TypedefController extends AbstractController {
 
     public void editSimpleItem() {
         System.out.println("Editing Simple Item");
-        Item data = (Item) getData();
+        Typedef data = (Typedef) getData();
         simpleItemButtons("Edit Simple Item", data.getSimpleItem());
     }
 

@@ -31,7 +31,7 @@
         <Text fx:id="deleteButtonText" text="Delete"/>
     </fx:define>
     <TabPane prefHeight="610" prefWidth="810" tabClosingPolicy="SELECTED_TAB" fx:id="tabPane">
-        <Tab text="Untitled Tab 1" closable="false">
+        <Tab text="Main Tab" closable="false">
             <VBox>
                 <HBox fx:id="icons"/>
                 <ScrollPane prefHeight="590" prefWidth="810">
